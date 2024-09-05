@@ -3,6 +3,8 @@
 import React from "react";
 import TopClassCoursesContainer from "@/components/custom-component/home/top-class-section";
 import Hero from "@/components/custom-component/home/hero-section";
+// import Hero from "@/components/custom-component/home/hero";
+
 import ExpertServicesSection from "@/components/custom-component/home/expert-services-section";
 import BecomeAnInstructorSection from "@/components/custom-component/home/become-an-instructor-section";
 import ReviewSection from "@/components/custom-component/home/review-section";
@@ -82,7 +84,7 @@ const reviews: Review[] = [
 
 export default function Home() {
   return (
-    <main className="md:py-8 lg:py-8 lg:px-40 sm:px-3 sm:py-3  md:px-40">
+    <main className="py-16">
       <Hero />
       <TopClassCoursesContainer courseCategory={courseCategoriesData} />
       <ExpertServicesSection experts={expertServices} />

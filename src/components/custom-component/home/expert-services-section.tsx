@@ -1,7 +1,4 @@
-// src/components/custom-component/home/expert-services-section.tsx
-import React from "react";
 import SectionHeader from "./section-header";
-import ExpertServiceCard from "./expert-services-card";
 import { ExpertService } from "@/types/expertService";
 import {
   Carousel,
@@ -12,33 +9,39 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
+import { IoMdBookmark } from "react-icons/io";
+import { Separator } from "@/components/ui/separator";
+import Rating from "../ratings/rating";
+import ExpertServiceCard from "./expert-services-card";
 
 const ExpertServicesSection: React.FC<{ experts: ExpertService[] }> = ({
   experts = [],
 }) => {
   return (
-    <div className="w-full flex flex-col items-center gap-4 py-2">
+    <div className="w-full flex flex-col items-center gap-4 py-2 px-8 md:px-16">
       <SectionHeader title={"Expert Services"} />
-      <h1 className="text-center w-[555px] font-bold text-[32px]">
+      <h1 className="text-center font-bold text-2xl lg:text-3xl">
         Connect with Industry Specialists
       </h1>
-      <p className="text-center w-[660px] font-normal text-[16px] text-[#E3E3E3] ">
+      <p className="text-center w-full max-w-xl font-normal text-sm md:text-base text-[#E3E3E3] ">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s.
       </p>
       <Carousel
         opts={{
-          align: "start",
+          loop: true,
         }}
-        className="w-full max-w-4xl"
+        className="w-full max-w-sm md:max-w-3xl lg:max-w-5xl"
       >
-        <CarouselContent>
-          {experts.map((expert) => (
-            <CarouselItem key={expert.id} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-2">
-                <ExpertServiceCard {...expert} />
-              </div>
+        <CarouselContent className="w-full">
+          {experts.map((expert, index) => (
+            <CarouselItem
+              key={index}
+              className="pl-1 md:basis-1/2 lg:basis-1/3"
+            >
+              <ExpertServiceCard {...expert} />
             </CarouselItem>
           ))}
         </CarouselContent>

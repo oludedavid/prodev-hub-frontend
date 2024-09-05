@@ -16,15 +16,15 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ reviews }) => {
           backgroundPosition: "center",
           color: "transparent",
         }}
-        className="w-[335px] text-center font-bold text-[32px]"
+        className="text-center font-bold text-2xl"
       >
         What our students say about us
       </h1>
-      <div className="flex flex-wrap gap-4 justify-center py-4">
+      <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center p-6">
         {reviews.map((review) => (
           <ReviewCard key={review.id} {...review} />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

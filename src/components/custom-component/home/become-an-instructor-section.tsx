@@ -4,9 +4,9 @@ import { FaArrowRight } from "react-icons/fa6";
 import Image from "next/image";
 const BecomeAnInstructorSection = () => {
   return (
-    <div className=" w-full flex flex-col items-center mt-24">
-      <div className="relative  h-[394px]">
-        <svg
+    <div className=" w-full flex flex-col bg-[#090b25] items-center mt-24">
+      <div className="max-w-5xl mx-auto relative bg-[#5351c3]">
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1130"
           height="394"
@@ -30,10 +30,10 @@ const BecomeAnInstructorSection = () => {
               <stop offset="1" stop-color="#663FD6" />
             </linearGradient>
           </defs>
-        </svg>
+        </svg> */}
         {/* main content */}
-        <div className="absolute flex justify-between gap-3 top-0 left-0 px-16 py-6 h-full w-full bg-transparent z-10">
-          <div className="w-[422px] flex flex-col gap-2">
+        <div className="flex flex-col items-center lg:flex-row gap-3 top-0 left-0 p-4 md:px-8 lg:px-16 py-6 h-full w-full bg-transparent z-10">
+          <div className="flex flex-col gap-6">
             <SectionHeader title="Become an Instructor" />
             <h1
               style={{
@@ -43,11 +43,11 @@ const BecomeAnInstructorSection = () => {
                 backgroundPosition: "center",
                 color: "transparent",
               }}
-              className="text-[32px] font-bold"
+              className="text-2xl font-bold"
             >
               Let’s Join Us & Spread Your Knowledge with Prodev Hub
             </h1>
-            <p className="text-[14px] font-normal w-[452px] text-[#E3E3E3]">
+            <p className="text-[14px] font-normal text-[#E3E3E3]">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dum
             </p>
@@ -61,10 +61,10 @@ const BecomeAnInstructorSection = () => {
               Become an Instructor <FaArrowRight className="ml-2 text-white" />
             </Button>
           </div>
-          <div className="w-[447px] h-[334px]">
+          <div className="">
             <Image
-              width={420}
-              height={330}
+              width={520}
+              height={530}
               src="/images/frame.png"
               alt="become and instructor frame"
             />

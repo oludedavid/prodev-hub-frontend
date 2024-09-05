@@ -56,7 +56,7 @@ const registerFormSchema = z.object({
   role: z.enum(["student", "tutor"]).default("student"),
 });
 
-export default function ResgistrationForm() {
+export default function RegistrationForm() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [isPasswordThesame, setIsPasswordTheSame] = React.useState(true);
   const [register, setRegister] = React.useState(false);
@@ -135,7 +135,7 @@ export default function ResgistrationForm() {
                   boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
                   borderRadius: "6px",
                 }}
-                className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
+                className="flex items-center border border-solid rounded-md px-6 py-2"
               >
                 <FormLabel className="w-[30px] flex items-center justify-center">
                   <Image
@@ -168,9 +168,9 @@ export default function ResgistrationForm() {
                   boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
                   borderRadius: "6px",
                 }}
-                className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
+                className="flex items-center border border-solid rounded-md px-6 py-2"
               >
-                <FormLabel className="w-[30px] flex items-center justify-center">
+                <FormLabel className="flex items-center justify-center">
                   <Image
                     src="/images/email.png"
                     alt="email icon"
@@ -201,9 +201,9 @@ export default function ResgistrationForm() {
                   boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
                   borderRadius: "6px",
                 }}
-                className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
+                className="flex items-center border border-solid rounded-md px-6 py-2"
               >
-                <FormLabel className="w-[30px] flex items-center justify-center">
+                <FormLabel className="flex items-center justify-center">
                   <Image
                     src="/images/password.png"
                     alt="user icon"
@@ -237,7 +237,7 @@ export default function ResgistrationForm() {
                 }}
                 className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
               >
-                <FormLabel className="w-[30px] flex items-center justify-center">
+                <FormLabel className="flex items-center justify-center">
                   <Image
                     src="/images/password.png"
                     alt="user icon"

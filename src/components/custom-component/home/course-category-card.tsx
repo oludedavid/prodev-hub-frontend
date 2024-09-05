@@ -19,9 +19,9 @@ const CourseCategoryCard: React.FC<CourseCategories> = ({
         border: "0.7px solid rgba(255, 255, 255, 0.39)",
         backdropFilter: "blur(1.6px)",
       }}
-      className="relative w-[210px] h-[240px] flex flex-col gap-3 py-10 px-3"
+      className="relative flex flex-col gap-3 py-10 px-3"
     >
-      <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center bg-[#663FD6]">
+      <div className="w-14 h-14 rounded-full flex items-center justify-center bg-[#663FD6]">
         {/* Icon */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +80,12 @@ const CourseCategoryCard: React.FC<CourseCategories> = ({
           </defs>
         </svg>
       </div>
-      <p className="text-white text-[18px] font-bold">{name}</p>
+      <p className="text-white text-base font-bold">{name}</p>
       <p
         style={{
           color: "rgba(227, 227, 227, 0.93)",
         }}
-        className="text-sm font-medium w-[75px]"
+        className="text-sm font-medium"
       >
         {numberOfCourses} Courses
       </p>

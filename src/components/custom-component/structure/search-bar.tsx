@@ -25,9 +25,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ courseCategories = [] }) => {
   };
 
   return (
-    <div className="flex px-4 items-center justify-between w-[489px] h-[43px] relative bg-transparent rounded-[39px] border-[0.4px] border-gray-700">
+    // <div className="flex px-4 items-center justify-between w-[489px] h-[43px] relative bg-transparent rounded-[39px] border-[0.4px] border-gray-700">
+    <div className="flex px-4 items-center justify-between w-80 md:w-96 h-[43px] relative bg-transparent rounded-[39px] border-[0.4px] border-gray-700">
       <Select onValueChange={handleCategoryChange}>
-        <SelectTrigger className="w-[130px] py-2 px-2 h-[20px] border-none">
+        <SelectTrigger className="w-full py-2 px-2 h-[20px] border-none">
           <SelectValue placeholder="Categories" />
         </SelectTrigger>
         <SelectContent
@@ -53,8 +54,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ courseCategories = [] }) => {
       </Select>
       <Input
         type="text"
-        className="flex items-center justify-center w-2/3 h-full border-none bg-transparent placeholder:text-gray-500 text-white focus:outline-none"
-        placeholder="Find your course.."
+        className="flex items-center justify-center placeholder:text-ellipsis border-none bg-transparent placeholder:text-gray-500 text-white focus:outline-none"
+        placeholder="Course name..."
       />
       <Button
         style={{

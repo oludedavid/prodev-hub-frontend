@@ -33,7 +33,7 @@ const CustomLayout: React.FC<CustomLayoutProps> = ({
         loggedUser={loggedUser}
         isCurrentPathName={isCurrentPathName}
       />
-      <main className="px-12">{children}</main>
+      <main>{children}</main>
       <Footer isMobile={isMobile} isDesktop={isDesktop} isTablet={isTablet} />
     </div>
   );
