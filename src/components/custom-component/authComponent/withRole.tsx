@@ -1,4 +1,3 @@
-"use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, ComponentType } from "react";
 import Cookies from "universal-cookie";
