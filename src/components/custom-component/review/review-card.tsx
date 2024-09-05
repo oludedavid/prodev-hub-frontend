@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Rating from "../ratings/rating";
-import { Review } from "@/app/types/review";
+import { Review } from "@/types/review";
 
 const ReviewCard: React.FC<Review> = ({
   rating,

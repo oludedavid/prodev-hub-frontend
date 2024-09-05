@@ -2,7 +2,7 @@
 import { IoMdBookmark } from "react-icons/io";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { ExpertServiceCardProps } from "@/app/types/expertService";
+import { ExpertServiceCardProps } from "@/types/expertService";
 import Rating from "@/components/custom-component/ratings/rating";
 
 const ExpertServiceCard: React.FC<ExpertServiceCardProps> = ({

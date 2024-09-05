@@ -2,7 +2,7 @@
 import React from "react";
 import SectionHeader from "./section-header";
 import ReviewCard from "../review/review-card";
-import { ReviewSectionProps } from "@/app/types/review";
+import { ReviewSectionProps } from "@/types/review";
 
 const ReviewSection: React.FC<ReviewSectionProps> = ({ reviews }) => {
   return (

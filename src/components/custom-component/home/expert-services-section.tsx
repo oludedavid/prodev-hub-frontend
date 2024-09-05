@@ -2,7 +2,7 @@
 import React from "react";
 import SectionHeader from "./section-header";
 import ExpertServiceCard from "./expert-services-card";
-import { ExpertService } from "@/app/types/expertService";
+import { ExpertService } from "@/types/expertService";
 import {
   Carousel,
   CarouselContent,

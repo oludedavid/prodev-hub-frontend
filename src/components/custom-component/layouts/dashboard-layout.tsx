@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Footer from "../structure/footer";
-import { useMediaQuery } from "@/app/hooks/use-media-query";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import {
   Sheet,
   SheetClose,

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NavigationItemProps } from "@/app/types/navigation-item-props-type";
+import { NavigationItemProps } from "@/types/navigation-item-props-type";
 import { LoggedUserProps } from "../layouts/custom-layout";
 import LogoutButton from "../authComponent/logout";
 

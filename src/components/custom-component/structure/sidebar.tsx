@@ -1,7 +1,7 @@
 import React from "react";
 import SideBarMenu from "./sidebar-menu";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useMediaQuery } from "@/app/hooks/use-media-query";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import {
   Sheet,
   SheetTrigger,

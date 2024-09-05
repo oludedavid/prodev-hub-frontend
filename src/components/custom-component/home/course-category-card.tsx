@@ -1,6 +1,6 @@
 // src/components/custom-component/course-category-card.tsx
 import React from "react";
-import { CourseCategoryCardProps } from "@/app/types/coursesCategoriesCard";
+import { CourseCategoryCardProps } from "@/types/coursesCategoriesCard";
 import { courseCategoriesData } from "@/data/courseCategories";
 import { CourseCategories } from "@/schema/courseCategories";
 import { Button } from "@/components/ui/button";

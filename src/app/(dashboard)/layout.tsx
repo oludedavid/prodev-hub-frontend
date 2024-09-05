@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 import { studentMenuItems } from "./studentMenuItems";
 import { tutorMenuItems } from "./tutorMenuItems";
 import { SidebarMenuItemProps } from "./studentMenuItems";
-import { useMediaQuery } from "@/app/hooks/use-media-query";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
