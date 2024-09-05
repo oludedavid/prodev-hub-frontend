@@ -1,7 +1,8 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState, ComponentType } from "react";
 import Cookies from "universal-cookie";
 
+// Define the types for the HOC
 const withRole = <P extends object>(
   WrappedComponent: ComponentType<P>,
   allowedRoles: string[]
@@ -9,32 +10,38 @@ const withRole = <P extends object>(
   const HOC = (props: P) => {
     const router = useRouter();
     const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
+    const [isClient, setIsClient] = useState(false);
     const cookies = new Cookies();
 
     useEffect(() => {
-      const token = cookies.get("TOKEN");
-      const user = cookies.get("USER");
-      const userRole = user?.role;
+      setIsClient(true);
+    }, []);
 
-      if (!token) {
-        router.push("/login");
-        return;
+    useEffect(() => {
+      if (isClient) {
+        const token = cookies.get("TOKEN");
+        const user = cookies.get("USER");
+        const userRole = user?.role;
+
+        if (!token) {
+          router.push("/login");
+          return;
+        }
+
+        if (!allowedRoles.includes(userRole)) {
+          router.push("/403");
+          return;
+        }
+
+        setIsAuthorized(true);
       }
-
-      if (!allowedRoles.includes(userRole)) {
-        router.push("/403");
-        return;
-      }
-
-      setIsAuthorized(true);
-    }, [router]);
+    }, [router, isClient, cookies]);
 
     if (!isAuthorized) return <div>Loading...</div>;
 
-    return <WrappedComponent {...props} />;
+    return isClient ? <WrappedComponent {...props} /> : null;
   };
 
-  // Adding displayName to the HOC
   HOC.displayName = `withRole(${
     WrappedComponent.displayName || WrappedComponent.name || "Component"
   })`;
