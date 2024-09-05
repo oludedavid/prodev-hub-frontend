@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ExpertServiceCardProps } from "@/types/expertService";
 import Rating from "@/components/custom-component/ratings/rating";
-
+import Image from "next/image";
 const ExpertServiceCard: React.FC<ExpertServiceCardProps> = ({
   name,
   title,
@@ -24,7 +24,9 @@ const ExpertServiceCard: React.FC<ExpertServiceCardProps> = ({
     >
       {/* header */}
       <div className="relative flex flex-col py-2 items-center">
-        <img
+        <Image
+          width={232}
+          height={156}
           src={imageUrl}
           className="w-[232px] h-[156px]"
           alt={`${name}'s profile`}
