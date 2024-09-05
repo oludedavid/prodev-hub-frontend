@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+"use client";
 import LoginForm from "@/components/custom-component/authComponent/login";
 import { Toaster } from "@/components/ui/toaster";
 export default function LoginPage() {

@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { CourseCategories } from "@/schema/courseCategories";
-import { CourseCategoryCardProps } from "@/types/coursesCategoriesCard";
 import TopClassCoursesContainer from "@/components/custom-component/home/top-class-section";
 import Hero from "@/components/custom-component/home/hero-section";
 import ExpertServicesSection from "@/components/custom-component/home/expert-services-section";

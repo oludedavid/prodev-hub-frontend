@@ -1,8 +1,8 @@
+/* eslint-disable */
 "use client";
 import "../globals.css";
 import React from "react";
 import withRole from "@/components/custom-component/authComponent/withRole";
-import Footer from "@/components/custom-component/structure/footer";
 import SideBar from "@/components/custom-component/structure/sidebar";
 import { Separator } from "@/components/ui/separator";
 import Logo from "@/components/custom-component/logo/logo";

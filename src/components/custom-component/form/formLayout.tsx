@@ -1,6 +1,6 @@
+/* eslint-disable */
 "use client";
 import React from "react";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";

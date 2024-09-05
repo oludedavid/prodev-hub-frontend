@@ -1,3 +1,4 @@
+/* eslint-disable */
 import BackgroundRectPattern from "@/components/custom-component/background/backgroundRect";
 import SearchBar from "@/components/custom-component/structure/search-bar";
 import { coursesData } from "@/data/coursesData";

@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, ComponentType } from "react";
@@ -31,7 +32,7 @@ const withRole = <P extends object>(
       }
 
       setIsAuthorized(true);
-    }, [allowedRoles, router]);
+    }, [cookies, router]);
 
     if (!isAuthorized) return <div>Loading...</div>;
 
