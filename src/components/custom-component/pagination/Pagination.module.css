@@ -1,0 +1,30 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.page-item {
+  color: #e3e3e3;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: #663fd6;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
