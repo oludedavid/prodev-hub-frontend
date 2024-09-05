@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, ComponentType } from "react";
 import Cookies from "universal-cookie";
 
-// Define the types for the HOC
 const withRole = <P extends object>(
   WrappedComponent: ComponentType<P>,
   allowedRoles: string[]
@@ -12,14 +11,14 @@ const withRole = <P extends object>(
     const router = useRouter();
     const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
     const [isClient, setIsClient] = useState(false);
-    const cookies = new Cookies();
 
     useEffect(() => {
-      setIsClient(true);
+      setIsClient(true); // Ensure this runs on the client side
     }, []);
 
     useEffect(() => {
       if (isClient) {
+        const cookies = new Cookies(); // Initialize cookies inside useEffect
         const token = cookies.get("TOKEN");
         const user = cookies.get("USER");
         const userRole = user?.role;
@@ -36,11 +35,11 @@ const withRole = <P extends object>(
 
         setIsAuthorized(true);
       }
-    }, [router, isClient, cookies]);
+    }, [router, isClient]); // No need for 'cookies' in the dependency array
 
     if (!isAuthorized) return <div>Loading...</div>;
 
-    return isClient ? <WrappedComponent {...props} /> : null;
+    return isClient ? <WrappedComponent {...props} /> : null; // Render after client check
   };
 
   HOC.displayName = `withRole(${
