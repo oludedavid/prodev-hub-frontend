@@ -32,7 +32,7 @@ export default function FormLayout({
               <path
                 d="M24.7084 28.2686C48.9037 5.68747 -77.2036 -169.813 34.9178 -49.6771C147.039 70.4592 218.317 186.155 194.122 208.736C169.927 231.317 59.4202 152.233 -52.7013 32.0964C-164.823 -88.0399 0.513039 50.8497 24.7084 28.2686Z"
                 fill="#663FD6"
-                fill-opacity="0.55"
+                fillOpacity="0.55"
               />
             </g>
             <defs>
@@ -43,9 +43,9 @@ export default function FormLayout({
                 width="676.148"
                 height="689.941"
                 filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
+                colorInterpolationFilters="sRGB"
               >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feBlend
                   mode="normal"
                   in="SourceGraphic"

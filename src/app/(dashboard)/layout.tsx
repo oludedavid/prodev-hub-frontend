@@ -33,11 +33,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   }
 
   return (
-    <html lang="en">
-      <Head>
-        <title>Dashboard</title>
-      </Head>
-
+    <html>
       <body>
         <div className="min-h-screen flex flex-col">
           {isMobile && (
@@ -67,8 +63,8 @@ const DesktopDashboardLayout: React.FC<{
 }> = ({ children, sidebarMenuItems }) => {
   return (
     <>
-      <div className="flex flex-1">
-        <SideBar className="w-[285px] h-[calc(100vh-85px)] fixed top-0 left-0 border-r-[0.3px] border-solid border-violet-950 flex flex-col">
+      <div className="flex flex-1 pt-16">
+        <SideBar className="w-[285px] h-[calc(100vh-200px)] fixed border-r-[0.3px] border-solid border-violet-950 flex flex-col">
           <Logo className="text-[30px] font-medium" />
           <div className="flex flex-col gap-20 py-6">
             {sidebarMenuItems.map((item) => (

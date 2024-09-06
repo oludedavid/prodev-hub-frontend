@@ -125,7 +125,7 @@ const NavigationBar = ({
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   return (
-    <nav className="w-screen sm:h-4 lg:h-10 md:h-10 backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-[#10192B] py-12 ">
+    <nav className="fixed top-0 left-0 w-screen sm:h-4 lg:h-10 md:h-10 backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-[#10192B] py-12 ">
       {isMobile && (
         <MobileNavigationMenu
           loggedUser={loggedUser}

@@ -1,7 +1,5 @@
 // src/components/custom-component/course-category-card.tsx
 import React from "react";
-import { CourseCategoryCardProps } from "@/types/coursesCategoriesCard";
-import { courseCategoriesData } from "@/data/courseCategories";
 import { CourseCategories } from "@/schema/courseCategories";
 import { Button } from "@/components/ui/button";
 
@@ -30,7 +28,7 @@ const CourseCategoryCard: React.FC<CourseCategories> = ({
           viewBox="0 0 26 26"
           fill="none"
         >
-          <g clip-path="url(#clip0_2055_98)">
+          <g clipPath="url(#clip0_2055_98)">
             <path
               d="M4.74265 2.80054C3.79574 2.80054 3.02539 3.57064 3.02539 4.51713C3.02539 5.46363 3.79574 6.23373 4.74265 6.23373C5.69031 6.23373 6.46132 5.46363 6.46132 4.51713C6.46132 3.57064 5.69031 2.80054 4.74265 2.80054ZM4.74265 5.20997C4.36026 5.20997 4.0492 4.89916 4.0492 4.51713C4.0492 4.1351 4.36026 3.82434 4.74265 3.82434C5.12579 3.82434 5.43757 4.13515 5.43757 4.51718C5.43757 4.89921 5.12579 5.20997 4.74265 5.20997Z"
               fill="white"
@@ -116,9 +114,9 @@ const CourseCategoryCard: React.FC<CourseCategories> = ({
               width="59.8"
               height="59.8"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"

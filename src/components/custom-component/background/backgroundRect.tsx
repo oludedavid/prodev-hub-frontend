@@ -31,7 +31,7 @@ const BackgroundRectPattern = ({ children }: { children: React.ReactNode }) => {
           viewBox="0 0 148 12"
           fill="none"
         >
-          <g clip-path="url(#clip0_2058_1343)">
+          <g clipPath="url(#clip0_2058_1343)">
             <path
               d="M147.765 1.05835e-05L147.985 6.31321L90.1852 6.70043L12.1925 10.2396L69.8145 4.96499L0 5.16006"
               fill="#663FD6"

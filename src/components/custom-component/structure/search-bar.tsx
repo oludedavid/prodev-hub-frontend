@@ -22,6 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ courseCategories = [] }) => {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+    console.log(selectedCategory);
   };
 
   return (

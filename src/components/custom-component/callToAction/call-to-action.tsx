@@ -21,7 +21,7 @@ const CallToAction = () => {
           <path
             d="M0.0395781 29.4736L21.3636 0.419812L35.2901 36.9728L0.0395781 29.4736Z"
             fill="#407BFF"
-            fill-opacity="0.48"
+            fillOpacity="0.48"
           />
         </svg>
         <p className="w-[348px] h-[45px] font-bold text-[32px]  pb-2">
@@ -37,7 +37,7 @@ const CallToAction = () => {
           <path
             d="M37.1905 37.8673L-0.00280798 28.3118L26.8692 0.879143L37.1905 37.8673Z"
             fill="#407BFF"
-            fill-opacity="0.48"
+            fillOpacity="0.48"
           />
         </svg>
         <div className=" w-[392px] h-[45px] flex flex-row items-center justify-between bg-white border-none rounded-[40px]">
@@ -52,8 +52,8 @@ const CallToAction = () => {
             <path
               d="M99.9204 7.53171C99.9204 7.53171 98.4216 0.100048 94.9244 1.09097C91.4272 2.08188 72.9421 25.3676 68.9453 21.8995C64.9485 18.4314 63.9493 11.9907 58.9534 11.4952C53.9574 10.9998 34.9727 43.2035 30.4763 41.2218C25.9799 39.24 24.4811 32.3038 18.9855 30.322C13.4899 28.3403 1 44.6898 1 44.6898"
               stroke="#407BFF"
-              stroke-opacity="0.77"
-              stroke-width="1.64867"
+              strokeOpacity="0.77"
+              strokeWidth="1.64867"
             />
           </svg>
           <Input
