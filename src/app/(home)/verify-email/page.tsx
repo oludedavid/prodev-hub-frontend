@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-
+import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -40,12 +40,13 @@ const VerifyEmailContent = () => {
   }, [token]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-start justify-center min-h-screen py-2">
       <h1>Email Verification</h1>
       <p>
-        {status} {statusState && <Link href="/login">Login</Link>}{" "}
         {status === "Email verified successfully! You can now log in." && (
-          <Link href="/login">Login</Link>
+          <Button>
+            <Link href="/login">Login</Link>
+          </Button>
         )}
       </p>
     </div>

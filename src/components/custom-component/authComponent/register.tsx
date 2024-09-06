@@ -67,7 +67,7 @@ export default function RegistrationForm() {
   const { toast } = useToast();
   const router = useRouter();
   const baseURL = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_API_URL}/register`;
-  console.log("Base URL:", baseURL);
+
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
@@ -115,6 +115,9 @@ export default function RegistrationForm() {
         setLoading(false);
       });
   }
+  function toggleAlert() {
+    setRegister(false);
+  }
 
   return (
     <>
@@ -124,7 +127,7 @@ export default function RegistrationForm() {
           <AlertTitle>Success</AlertTitle>
           <AlertDescription>
             Registration was successful. Please verify your email address to
-            activate your account.
+            activate your account. <Button onClick={toggleAlert}>Cancel</Button>
           </AlertDescription>
         </Alert>
       )}
