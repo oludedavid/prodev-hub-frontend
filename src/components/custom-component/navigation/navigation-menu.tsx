@@ -32,6 +32,9 @@ const NavigationMenu = ({
   const splitName = name?.split(" ");
   const initials = splitName && splitName[0][0] + splitName[1][0];
 
+  console.log("name", name);
+  console.log("initials", initials);
+
   return (
     <ul className={`${className} `}>
       <NavigationItem active={isCurrentPathName("/")} href={"/"} label="Home" />

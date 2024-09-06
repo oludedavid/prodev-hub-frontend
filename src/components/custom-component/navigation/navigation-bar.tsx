@@ -188,19 +188,51 @@ const NavigationBar = ({
               </Link>
             ))}
           </ul>
+
           {/* login and signup buttons */}
-          <div className="space-x-4">
-            <Link href="/login">
-              <Button className="px-6" variant="login">
-                Login
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button className="px-6" variant="signup">
-                Signup
-              </Button>
-            </Link>
-          </div>
+          {loggedUser ? (
+            <>
+              <Link
+                href={`${
+                  loggedUser.role === "student" ? "/students" : "/tutors"
+                }`}
+                className={cn(
+                  `
+              text-xs
+              md:text-sm
+              lg:text-base
+              hover:text-[#4958bb]
+              capitalize
+              `,
+                  pathName ===
+                    (loggedUser.role === "student" ? "/students" : "/tutors")
+                    ? "text-[#4958bb]"
+                    : "text-white"
+                )}
+              >
+                Dashboard
+              </Link>
+              <LogoutButton />
+              <div className="flex flex-row justify-center items-center w-[40px] h-[40px] rounded-full bg-[#DAD7E2]">
+                <p className="text-[#663FD6] font-bold text-2xl text-center">
+                  {initials}
+                </p>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-col space-y-4">
+              <Link href="/login">
+                <Button className="px-6" variant="login">
+                  Login
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button className="px-6" variant="signup">
+                  Signup
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* mobile navigation */}
