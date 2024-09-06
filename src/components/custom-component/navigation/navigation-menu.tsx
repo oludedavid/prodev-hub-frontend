@@ -33,7 +33,7 @@ const NavigationMenu = ({
   const initials = splitName && splitName[0][0] + splitName[1][0];
 
   return (
-    <ul className={`${className}`}>
+    <ul className={`${className} `}>
       <NavigationItem active={isCurrentPathName("/")} href={"/"} label="Home" />
       <NavigationItem
         active={isCurrentPathName("/about")}
@@ -65,11 +65,15 @@ const NavigationMenu = ({
             href={`${loggedUser.role === "student" ? "/students" : "/tutors"}`}
             label="Dashboard"
           />
-          <LogoutButton />
-          <div className="flex flex-row justify-center items-center w-[40px] h-[40px] rounded-full bg-[#DAD7E2]">
-            <p className="text-[#663FD6] font-bold text-2xl text-center">
-              {initials}
-            </p>
+          <div className="flex gap-16  justify-center items-center">
+            <div className="font-bold text-2xl text-center flex flex-row justify-center items-center w-[40px] h-[40px] rounded-full bg-[#DAD7E2] relative">
+              <p className="absolute text-[#663FD6] font-bold text-2xl text-center ">
+                {initials}
+              </p>
+            </div>
+
+            <p className="text-white text-[14px] text-center font-bold uppercase py-2">{`${loggedUser.fullName}`}</p>
+            <LogoutButton />
           </div>
         </>
       ) : (

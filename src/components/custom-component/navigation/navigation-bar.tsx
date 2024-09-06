@@ -23,16 +23,14 @@ const DesktopNavigationMenu = ({
   isCurrentPathName: (path: string) => boolean;
 }) => {
   return (
-    <div>
-      <div className="flex flex-row md:justify-around lg:justify-around sm:justify-center items-center w-full h-full">
-        <Logo className="text-[25px] font-extrabold" />
-        {loggedUser && (
-          <p className="text-white text-[14px] text-center font-bold ml-20 py-2">{`Welcome back, ${loggedUser.fullName}!`}</p>
-        )}
+    <div className=" flex">
+      <div className="flex flex-row md:justify-around lg:justify-around sm:justify-center items-center w-full h-full ">
+        <Logo className="text-[25px] font-extrabold px-6" />
+
         <NavigationMenu
           loggedUser={loggedUser}
           isCurrentPathName={isCurrentPathName}
-          className={"flex flex-row items-center justify-center px-2 gap-10 "}
+          className={"flex flex-row items-center justify-center px-2 gap-12 "}
         />
       </div>
     </div>
@@ -125,7 +123,7 @@ const NavigationBar = ({
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   return (
-    <nav className="fixed top-0 z-50 left-0 w-screen sm:h-4 lg:h-10 md:h-10 backdrop-filter backdrop-blur-lg bg-opacity-80 border-b border-[#10192B] py-12 ">
+    <nav className="flex flex-row justify-center items-center gap-4 fixed top-0 z-50 left-0 w-screen sm:h-4 lg:h-20 md:h-10 backdrop-filter backdrop-blur-lg bg-opacity-10 border-b border-[#10192B]  ">
       {isMobile && (
         <MobileNavigationMenu
           loggedUser={loggedUser}
