@@ -6,12 +6,11 @@ import withRole from "@/components/custom-component/authComponent/withRole";
 import SideBar from "@/components/custom-component/structure/sidebar";
 import { Separator } from "@/components/ui/separator";
 import Logo from "@/components/custom-component/logo/logo";
-import Head from "next/head";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { studentMenuItems } from "./studentMenuItems";
-import { tutorMenuItems } from "./tutorMenuItems";
-import { SidebarMenuItemProps } from "./studentMenuItems";
+import { studentMenuItems } from "../../types/studentMenuItems";
+import { tutorMenuItems } from "../../types/tutorMenuItems";
+import { SidebarMenuItemProps } from "../../types/studentMenuItems";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface DashboardLayoutProps {
@@ -162,4 +161,4 @@ const MobileDashboardLayout: React.FC<{
   );
 };
 
-export default withRole(DashboardLayout, ["student", "tutor"]);
+export default DashboardLayout;
