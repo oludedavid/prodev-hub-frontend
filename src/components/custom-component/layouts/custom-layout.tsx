@@ -3,7 +3,6 @@ import React from "react";
 import NavigationBar from "../navigation/navigation-bar";
 import Footer from "../structure/footer";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import Cookies from "universal-cookie";
 
 export type LoggedUserProps = {
   id: string;

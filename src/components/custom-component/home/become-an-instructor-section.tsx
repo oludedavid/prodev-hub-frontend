@@ -26,8 +26,8 @@ const BecomeAnInstructorSection = () => {
               y2="205.465"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#465BB8" />
-              <stop offset="1" stop-color="#663FD6" />
+              <stop stopColor="#465BB8" />
+              <stop offset="1" stopColor="#663FD6" />
             </linearGradient>
           </defs>
         </svg> */}
@@ -54,7 +54,7 @@ const BecomeAnInstructorSection = () => {
             <Button
               style={{
                 border: "1px solid #465BB8",
-                boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px;",
+                boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
               }}
               className="w-[227px] h-[43px] rounded-[32px] bg-[#010415] mt-2"
             >

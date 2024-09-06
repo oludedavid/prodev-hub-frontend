@@ -1,6 +1,6 @@
 /* eslint-disable */
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Spinner } from "../structure/spinner";
-import { IoEye, IoEyeOff } from "react-icons/io5";
+
 import {
   Form,
   FormControl,

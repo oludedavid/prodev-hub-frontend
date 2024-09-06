@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <CustomLayout loggedUser={user} isCurrentPathName={isCurrentPathName}>
-          <div className={`font-extralight pt-4 md:px-36 lg:px-36 sm:px-1`}>
+          <div className={`font-extralight pt-24 md:px-36 lg:px-36 sm:px-1`}>
             {pathname !== "/" && (
               <div className="flex flex-row items-center justify-start w-1/2 pl-2  gap-2">
                 <Link className="text-" href={"/"}>

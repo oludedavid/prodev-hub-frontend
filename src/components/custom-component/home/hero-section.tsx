@@ -1,17 +1,9 @@
-import BackgroundRectPattern from "@/components/custom-component/background/backgroundRect";
 import SearchBar from "@/components/custom-component/structure/search-bar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import Image from "next/image";
-import { coursesData } from "@/data/coursesData";
-import { CourseProps } from "@/schema/courses";
-import { CourseCategories } from "@/schema/courseCategories";
 import { courseCategoriesData } from "@/data/courseCategories";
-
-type HeroPageProps = {
-  courseCategories: CourseCategories[];
-};
 
 const Hero: React.FC = () => {
   // Extract unique category names
@@ -24,7 +16,7 @@ const Hero: React.FC = () => {
       className="flex flex-col w-full items-center pt-10 justify-center rounded-t-sm"
       style={{
         background: "linear-gradient(102deg, #10192B 13.6%, #365491 122.42%)",
-        boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;",
+        boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
       }}
     >
       <SearchBar courseCategories={uniqueCategories} />
@@ -129,7 +121,13 @@ const Hero: React.FC = () => {
           </svg>
         </div>
         <picture>
-          <Image src="/images/girl.png" alt="hero" width={400} height={400} />
+          <Image
+            priority={true}
+            src="/images/girl.png"
+            alt="hero"
+            width={400}
+            height={400}
+          />
         </picture>
       </div>
     </div>

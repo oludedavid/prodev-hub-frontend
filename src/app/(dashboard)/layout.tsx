@@ -6,12 +6,11 @@ import withRole from "@/components/custom-component/authComponent/withRole";
 import SideBar from "@/components/custom-component/structure/sidebar";
 import { Separator } from "@/components/ui/separator";
 import Logo from "@/components/custom-component/logo/logo";
-import Head from "next/head";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { studentMenuItems } from "./studentMenuItems";
-import { tutorMenuItems } from "./tutorMenuItems";
-import { SidebarMenuItemProps } from "./studentMenuItems";
+import { studentMenuItems } from "../../types/studentMenuItems";
+import { tutorMenuItems } from "../../types/tutorMenuItems";
+import { SidebarMenuItemProps } from "../../types/studentMenuItems";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface DashboardLayoutProps {
@@ -33,11 +32,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   }
 
   return (
-    <html lang="en">
-      <Head>
-        <title>Dashboard</title>
-      </Head>
-
+    <html>
       <body>
         <div className="min-h-screen flex flex-col">
           {isMobile && (
@@ -67,8 +62,8 @@ const DesktopDashboardLayout: React.FC<{
 }> = ({ children, sidebarMenuItems }) => {
   return (
     <>
-      <div className="flex flex-1">
-        <SideBar className="w-[285px] h-[calc(100vh-85px)] fixed top-0 left-0 border-r-[0.3px] border-solid border-violet-950 flex flex-col">
+      <div className="flex flex-1 pt-16">
+        <SideBar className="w-[285px] h-[calc(100vh-200px)] fixed border-r-[0.3px] border-solid border-violet-950 flex flex-col">
           <Logo className="text-[30px] font-medium" />
           <div className="flex flex-col gap-20 py-6">
             {sidebarMenuItems.map((item) => (
@@ -166,4 +161,4 @@ const MobileDashboardLayout: React.FC<{
   );
 };
 
-export default withRole(DashboardLayout, ["student", "tutor"]);
+export default DashboardLayout;
