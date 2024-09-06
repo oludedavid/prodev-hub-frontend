@@ -117,7 +117,7 @@ export default function ResgistrationForm() {
 
   return (
     <>
-      {register ? (
+      {register && (
         <Alert>
           <RocketIcon className="h-4 w-4" />
           <AlertTitle>Success</AlertTitle>
@@ -125,12 +125,6 @@ export default function ResgistrationForm() {
             Registration was successful. Please verify your email address to
             activate your account.
           </AlertDescription>
-        </Alert>
-      ) : (
-        <Alert>
-          <RocketIcon className="h-4 w-4" />
-          <AlertTitle>Sorry, registration failed!</AlertTitle>
-          <AlertDescription>Try again or contact admin.</AlertDescription>
         </Alert>
       )}
       <FormLayout action="register">
