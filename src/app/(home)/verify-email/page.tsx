@@ -43,7 +43,7 @@ const VerifyEmailContent = () => {
     <div className="flex flex-row items-start justify-center min-h-screen w-screen py-2">
       <h1>Welcome to Proddev Hub Nexus! 🎉😊🎊</h1>
       <p>
-        {status === "Email verified successfully! You can now log in." && (
+        {statusState && (
           <>
             <p>Your Email as been verified successfully 🎉😊🎊.</p>
             <Button className="mt-4 rounded-md text-white text-lg">
