@@ -15,7 +15,7 @@ const Footer = ({
 }) => {
   const MobileFooter = () => {
     return (
-      <footer className="md:w-screen lg:w-screen  pt-10">
+      <footer className="md:w-screen lg:w-screen pt-10">
         <div className="w-full flex  px-4">
           <Logo className="text-[25px] font-extrabold justify-start" />
           <ul className="w-2/3 flex flex-col gap-4 justify-around items-center flex-wrap">
@@ -34,7 +34,7 @@ const Footer = ({
             </div>
           </ul>
         </div>
-        <div className="relative w-screen h-10p-3 flex items-center justify-center  gap-2">
+        <div className="relative h-10 p-3 flex items-center justify-center  gap-2">
           <input
             className="bg-transparent border border-white w-full h-10 px-4 rounded-xl text-white font-thin text-[14px]"
             type="email"

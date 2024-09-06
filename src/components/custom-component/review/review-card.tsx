@@ -17,7 +17,7 @@ const ReviewCard: React.FC<Review> = ({
           "linear-gradient(180deg, rgba(254, 254, 254, 0.07) 0%, rgba(1, 4, 21, 0.00) 100%)",
         backdropFilter: "blur(3.049999952316284px)",
       }}
-      className="w-[384px] h-[203px] rounded-[15px] p-4 flex flex-col justify-between"
+      className="rounded-[15px] p-4 flex flex-col justify-between"
     >
       <div className="w-full flex justify-between px-2 py-2">
         <Rating rating={rating} />
@@ -35,9 +35,7 @@ const ReviewCard: React.FC<Review> = ({
           />
         </svg>
       </div>
-      <p className="w-[317px] h-[70px] text-[15px] text-[#E3E3E3] overflow-hidden whitespace-nowrap text-ellipsis">
-        {text}
-      </p>
+      <p className="text-[15px] text-[#E3E3E3]">{text}</p>
       <div className="flex items-center gap-2">
         <Image
           width={43}

@@ -1,7 +1,7 @@
 const SectionHeader = ({ title }: { title: string }) => {
   return (
     <h4
-      className="w-[168px] h-[32px] text-[10px] flex items-center justify-center font-semibold text-center rounded-[22px]"
+      className="text-base md:text-3xl flex items-center justify-center font-semibold text-center rounded-full"
       style={{
         textTransform: "uppercase",
         background: "rgba(218, 218, 218, 0.09)",

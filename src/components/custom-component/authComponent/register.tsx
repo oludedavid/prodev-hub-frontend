@@ -59,7 +59,8 @@ const registerFormSchema = z.object({
   role: z.enum(["student", "tutor"]).default("student"),
 });
 
-export default function ResgistrationForm() {
+export default function RegistrationForm() {
+  const [showPassword, setShowPassword] = React.useState(false);
   const [isPasswordThesame, setIsPasswordTheSame] = React.useState(true);
   const [register, setRegister] = React.useState(false);
   const [loading, setLoading] = React.useState(false);

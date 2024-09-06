@@ -7,10 +7,10 @@ const TopClassCoursesContainer = ({
   courseCategory: CourseCategories[];
 }) => {
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-4 py-3">
+    <div className="w-full flex flex-col justify-center items-center gap-4 p-3">
       <SectionHeader title={"Top Class Courses"} />
       <h1
-        className="text-[32px] font-bold text-center w-[638px]"
+        className="text-2xl w-full max-w-xl md:text-3xl font-bold text-center"
         style={{
           background:
             "linear-gradient(90deg, #FFF 0.95%, rgba(217, 217, 217, 0.65) 148.79%)",
@@ -21,19 +21,16 @@ const TopClassCoursesContainer = ({
       >
         Empower Your Skills with Prodev Hub: Transforming Beginners into Experts
       </h1>
-      <div className="w-[890px]">
-        <CourseCategoryCardList courseCategories={courseCategory} />
-      </div>
+      <CourseCategoryCardList courseCategories={courseCategory} />
       <div
         style={{
           background: "linear-gradient(102deg, #465BB8 0%, #663FD6 100%)",
         }}
-        className="p-0 mt-24 relative flex items-center justify-center  w-screen h-[172px]"
+        className="w-full mt-24 p-12 relative flex items-center justify-center"
       >
-        <div className="flex gap-3 relative">
-          {/* a */}
-          <div className="w-[350px] flex items-center justify-center gap-3">
-            <div className="w-[50px] h-[50px]">
+        <ul className="grid grid-cols-1 md:grid-cols-3 items-center justify-center relative mx-auto gap-14">
+          <div className="flex items-center justify-center max-w-sm gap-3">
+            <div className="w-14 h-14">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="50"
@@ -49,7 +46,7 @@ const TopClassCoursesContainer = ({
                 />
               </svg>
             </div>
-            <div className="flex flex-col w-[290px] px-3">
+            <div className="flex flex-col px-3">
               <h5 className="font-semibold text-lg ">
                 Reach unprecedented heights
               </h5>
@@ -59,8 +56,7 @@ const TopClassCoursesContainer = ({
               </p>
             </div>
           </div>
-          {/* b */}
-          <div className="w-[350px]  flex items-center justify-center gap-3">
+          <div className="flex items-center justify-center max-w-sm gap-3">
             <div className="w-[50px] h-[50px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +71,7 @@ const TopClassCoursesContainer = ({
                 />
               </svg>
             </div>
-            <div className="flex flex-col w-[270px] px-3">
+            <div className="flex flex-col px-3">
               <h5 className="font-semibold text-lg ">
                 Enhance your learning skills
               </h5>
@@ -85,8 +81,7 @@ const TopClassCoursesContainer = ({
               </p>
             </div>
           </div>
-          {/* c */}
-          <div className="w-[350px]  flex items-center justify-center gap-3">
+          <div className="flex items-center justify-center max-w-sm gap-3">
             <div className="w-[50px] h-[50px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +203,7 @@ const TopClassCoursesContainer = ({
                 </defs>
               </svg>
             </div>
-            <div className="flex flex-col w-[255px] px-3">
+            <div className="flex flex-col px-3">
               <h5 className="font-semibold text-lg ">Highly skilled team</h5>
               <p className="w-full font-normal text-[12px] text-[#FCFCFC] ">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -216,8 +211,7 @@ const TopClassCoursesContainer = ({
               </p>
             </div>
           </div>
-        </div>
-        {/* dotted line */}
+        </ul>
         <div className="absolute top-3 right-96">
           <svg
             xmlns="http://www.w3.org/2000/svg"

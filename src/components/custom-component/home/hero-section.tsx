@@ -13,58 +13,57 @@ const Hero: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col gap-10 w-full items-center pt-10 justify-center rounded-t-sm"
+      className="flex flex-col w-full items-center pt-10 justify-center rounded-t-sm"
       style={{
         background: "linear-gradient(102deg, #10192B 13.6%, #365491 122.42%)",
         boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
       }}
     >
       <SearchBar courseCategories={uniqueCategories} />
-      <h1 className="relative w-[514px] h-[102px] text-center font-bold text-[40px]">
-        Empower Your Tech Journey with ProDev Hub
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="148"
-          height="12"
-          viewBox="0 0 148 12"
-          fill="none"
-          className="absolute -bottom-4 right-28"
-        >
-          <g clipPath="url(#clip0_2058_1343)">
-            <path
-              d="M147.765 1.05835e-05L147.985 6.31321L90.1852 6.70043L12.1925 10.2396L69.8145 4.96499L0 5.16006"
-              fill="#663FD6"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_2058_1343">
-              <rect
-                width="147.855"
-                height="6.31705"
-                fill="white"
-                transform="translate(0 5.16006) rotate(-2)"
+      <div className="w-full max-w-2xl space-y-8 p-6">
+        <h1 className="relative text-center tracking-wider font-bold text-2xl lg:text-5xl">
+          Empower Your Tech Journey with ProDev Hub
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="148"
+            height="12"
+            viewBox="0 0 148 12"
+            fill="none"
+            className="absolute -bottom-4 right-28"
+          >
+            <g clipPath="url(#clip0_2058_1343)">
+              <path
+                d="M147.765 1.05835e-05L147.985 6.31321L90.1852 6.70043L12.1925 10.2396L69.8145 4.96499L0 5.16006"
+                fill="#663FD6"
               />
-            </clipPath>
-          </defs>
-        </svg>
-      </h1>
-      <p className="text-[18px] text-[#E3E3E3] w-[647px] text-center font-medium">
-        Elevate Your Skills and Collaborate with Experts on Our Innovative
-        Platform
-      </p>
+            </g>
+            <defs>
+              <clipPath id="clip0_2058_1343">
+                <rect
+                  width="147.855"
+                  height="6.31705"
+                  fill="white"
+                  transform="translate(0 5.16006) rotate(-2)"
+                />
+              </clipPath>
+            </defs>
+          </svg>
+        </h1>
+        <p className="text-base lg:text-xl text-[#E3E3E3] text-center font-medium">
+          Elevate Your Skills and Collaborate with Experts on Our Innovative
+          Platform
+        </p>
+      </div>
 
-      <Link
-        href="/courses"
-        className="w-[200px] flex underline h-[30px] text-[16px]"
-      >
+      <Link href="/courses" className="flex underline">
         Learn more
         <MdArrowOutward />
       </Link>
 
-      <div className="flex gap-6">
+      <div className="flex mt-4 flex-col lg:flex-row gap-3 md:gap-6">
         <Button
           variant={"outline"}
-          className="grid w-[212px] h-[43px] place-content-center rounded-[32px] bg-[#010415]"
+          className="grid place-content-center rounded-[32px] bg-[#010415]"
           style={{
             border: "1px solid #465BB8",
           }}
@@ -73,15 +72,13 @@ const Hero: React.FC = () => {
         </Button>
         <Button
           variant={"outline"}
-          className="grid border-none bg-gradient-to-r from-[#465BB8] to-[#663FD6] w-[212px] h-[43px] place-content-center rounded-[32px]"
+          className="grid border-none bg-gradient-to-r from-[#465BB8] to-[#663FD6] place-content-center rounded-[32px]"
         >
           Sign Up Instructor
         </Button>
       </div>
-      {/* image container */}
-      <div className="flex gap-6 pt-6">
-        {/* code box */}
-        <div className="w-[229px] h-[175px] pt-1 flex flex-col">
+      <div className="flex gap-6 p-6">
+        <div className="w-56 h-40 pt-1 flex flex-col">
           <div className="h-[26px] bg-[#663FD6] rounded-t-[10px]">
             <div className="flex gap-1 items-center py-3 px-2">
               <div className="w-1 h-1 rounded-full bg-red-500"></div>
@@ -109,7 +106,6 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* arrow */}
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +120,6 @@ const Hero: React.FC = () => {
             />
           </svg>
         </div>
-        {/* image */}
         <picture>
           <Image
             priority={true}

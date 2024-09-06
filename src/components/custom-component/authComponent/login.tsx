@@ -1,4 +1,3 @@
-/* eslint-disable */
 "use client";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -109,9 +108,9 @@ export default function LoginForm() {
                   boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
                   borderRadius: "6px",
                 }}
-                className="w-[494px] h-[44px] flex items-center border border-solid text-center rounded-md px-6 py-2"
+                className="flex items-center border border-solid text-center rounded-md px-6 py-2"
               >
-                <FormLabel className="w-[30px]">
+                <FormLabel>
                   <Image
                     src="/images/email.png"
                     alt="email icon"
@@ -121,7 +120,7 @@ export default function LoginForm() {
                 </FormLabel>
                 <FormControl className="border-none focus:outline-none focus:border-none">
                   <Input
-                    className="focus:outline-none py-2 border-none focus:border-none focus-visible:ring-transparent  w-[400px] h-[40px] rounded-md"
+                    className="focus:outline-none py-2 border-none focus:border-none focus-visible:ring-transparent rounded-md"
                     placeholder="Email"
                     {...field}
                   />
@@ -141,9 +140,9 @@ export default function LoginForm() {
                   boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
                   borderRadius: "6px",
                 }}
-                className="w-[494px] h-[44px] flex items-center border border-solid text-center rounded-md px-6 py-2"
+                className="flex items-center border border-solid text-center rounded-md px-6 py-2"
               >
-                <FormLabel className="w-[30px]">
+                <FormLabel>
                   <Image
                     src="/images/fullname.png"
                     alt="user icon"
@@ -153,7 +152,7 @@ export default function LoginForm() {
                 </FormLabel>
                 <FormControl className="border-none focus:outline-none focus:border-none">
                   <Input
-                    className="focus:outline-none py-2 border-none focus:border-none focus-visible:ring-transparent  w-[400px] h-[40px] rounded-md"
+                    className="focus:outline-none py-2 border-none focus:border-none focus-visible:ring-transparent rounded-md"
                     placeholder="password"
                     type="password"
                     {...field}
