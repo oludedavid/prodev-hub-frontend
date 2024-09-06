@@ -1,9 +1,11 @@
 "use client";
+
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const VerifyEmail = () => {
+const VerifyEmailContent = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const [status, setStatus] = useState("Verifying...");
@@ -37,6 +39,14 @@ const VerifyEmail = () => {
       <h1>Email Verification</h1>
       <p>{status}</p>
     </div>
+  );
+};
+
+const VerifyEmail = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyEmailContent />
+    </Suspense>
   );
 };
 
