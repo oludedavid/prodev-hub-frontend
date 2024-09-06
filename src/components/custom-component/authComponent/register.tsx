@@ -11,6 +11,9 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Spinner } from "../structure/spinner";
+import { RocketIcon } from "@radix-ui/react-icons";
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import {
   Form,
@@ -57,14 +60,11 @@ const registerFormSchema = z.object({
 });
 
 export default function ResgistrationForm() {
-  const [showPassword, setShowPassword] = React.useState(false);
   const [isPasswordThesame, setIsPasswordTheSame] = React.useState(true);
   const [register, setRegister] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-
   const { toast } = useToast();
   const router = useRouter();
-
   const baseURL = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_API_URL}/register`;
   console.log("Base URL:", baseURL);
   const form = useForm<z.infer<typeof registerFormSchema>>({
@@ -95,13 +95,11 @@ export default function ResgistrationForm() {
         setLoading(false);
         toast({
           title: "Success",
-          description: `Your account has been created.`,
+          description: `Your account has been created. Please check your email to verify your account.`,
           variant: "default",
         });
         setRegister(true);
         reset();
-        // Redirect to login page after successful registration
-        router.push("/login");
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -118,158 +116,180 @@ export default function ResgistrationForm() {
   }
 
   return (
-    <FormLayout action="register">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col space-y-5"
-        >
-          <FormField
-            control={form.control}
-            name="fullName"
-            render={({ field }) => (
-              <FormItem
-                style={{
-                  background: "#010415",
-                  border: "0.7px rgba(166, 166, 166, 0.24)",
-                  boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
-                  borderRadius: "6px",
-                }}
-                className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
-              >
-                <FormLabel className="w-[30px] flex items-center justify-center">
-                  <Image
-                    src="/images/fullname.png"
-                    alt="user icon"
-                    width={20}
-                    height={20}
-                    className="object-contain"
-                  />
-                </FormLabel>
-                <FormControl className="w-full">
-                  <Input
-                    className="focus:outline-none focus-visible:ring-transparent w-full h-full py-0 px-2 border-none"
-                    placeholder="Fullname"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem
-                style={{
-                  background: "#010415",
-                  border: "0.7px rgba(166, 166, 166, 0.24)",
-                  boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
-                  borderRadius: "6px",
-                }}
-                className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
-              >
-                <FormLabel className="w-[30px] flex items-center justify-center">
-                  <Image
-                    src="/images/email.png"
-                    alt="email icon"
-                    width={20}
-                    height={20}
-                    className="object-contain"
-                  />
-                </FormLabel>
-                <FormControl className="w-full">
-                  <Input
-                    className="focus:outline-none focus-visible:ring-transparent w-full h-full py-0 px-2 border-none"
-                    placeholder="Email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem
-                style={{
-                  background: "#010415",
-                  border: "0.7px rgba(166, 166, 166, 0.24)",
-                  boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
-                  borderRadius: "6px",
-                }}
-                className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
-              >
-                <FormLabel className="w-[30px] flex items-center justify-center">
-                  <Image
-                    src="/images/password.png"
-                    alt="user icon"
-                    width={20}
-                    height={20}
-                    className="object-contain"
-                  />
-                </FormLabel>
-                <FormControl className="w-full">
-                  <Input
-                    type="password"
-                    className="focus:outline-none focus-visible:ring-transparent w-full h-full py-0 px-2 border-none"
-                    placeholder="Password"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem
-                style={{
-                  background: "#010415",
-                  border: "0.7px rgba(166, 166, 166, 0.24)",
-                  boxShadow: "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
-                  borderRadius: "6px",
-                }}
-                className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
-              >
-                <FormLabel className="w-[30px] flex items-center justify-center">
-                  <Image
-                    src="/images/password.png"
-                    alt="user icon"
-                    width={20}
-                    height={20}
-                    className="object-contain"
-                  />
-                </FormLabel>
-                <FormControl className="w-full">
-                  <Input
-                    className="focus:outline-none focus-visible:ring-transparent w-full h-full py-0 px-2 border-none"
-                    placeholder="Confirm Password"
-                    type="password"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <small className="text-red-600 text-center ">{`${
-            isPasswordThesame ? "" : "Passwords do not match"
-          }`}</small>
-          <Button className="rounded-lg" type="submit">
-            {loading ? (
-              <Spinner className="text-gray-400" size="small" />
-            ) : (
-              "Submit"
-            )}
-          </Button>
-        </form>
-      </Form>
-    </FormLayout>
+    <>
+      {register ? (
+        <Alert>
+          <RocketIcon className="h-4 w-4" />
+          <AlertTitle>Success</AlertTitle>
+          <AlertDescription>
+            Registration was successful. Please verify your email address to
+            activate your account.
+          </AlertDescription>
+        </Alert>
+      ) : (
+        <Alert>
+          <RocketIcon className="h-4 w-4" />
+          <AlertTitle>Sorry, registration failed!</AlertTitle>
+          <AlertDescription>Try again or contact admin.</AlertDescription>
+        </Alert>
+      )}
+      <FormLayout action="register">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col space-y-5"
+          >
+            <FormField
+              control={form.control}
+              name="fullName"
+              render={({ field }) => (
+                <FormItem
+                  style={{
+                    background: "#010415",
+                    border: "0.7px rgba(166, 166, 166, 0.24)",
+                    boxShadow:
+                      "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
+                    borderRadius: "6px",
+                  }}
+                  className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
+                >
+                  <FormLabel className="w-[30px] flex items-center justify-center">
+                    <Image
+                      src="/images/fullname.png"
+                      alt="user icon"
+                      width={20}
+                      height={20}
+                      className="object-contain"
+                    />
+                  </FormLabel>
+                  <FormControl className="w-full">
+                    <Input
+                      className="focus:outline-none focus-visible:ring-transparent w-full h-full py-0 px-2 border-none"
+                      placeholder="Fullname"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem
+                  style={{
+                    background: "#010415",
+                    border: "0.7px rgba(166, 166, 166, 0.24)",
+                    boxShadow:
+                      "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
+                    borderRadius: "6px",
+                  }}
+                  className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
+                >
+                  <FormLabel className="w-[30px] flex items-center justify-center">
+                    <Image
+                      src="/images/email.png"
+                      alt="email icon"
+                      width={20}
+                      height={20}
+                      className="object-contain"
+                    />
+                  </FormLabel>
+                  <FormControl className="w-full">
+                    <Input
+                      className="focus:outline-none focus-visible:ring-transparent w-full h-full py-0 px-2 border-none"
+                      placeholder="Email"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem
+                  style={{
+                    background: "#010415",
+                    border: "0.7px rgba(166, 166, 166, 0.24)",
+                    boxShadow:
+                      "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
+                    borderRadius: "6px",
+                  }}
+                  className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
+                >
+                  <FormLabel className="w-[30px] flex items-center justify-center">
+                    <Image
+                      src="/images/password.png"
+                      alt="user icon"
+                      width={20}
+                      height={20}
+                      className="object-contain"
+                    />
+                  </FormLabel>
+                  <FormControl className="w-full">
+                    <Input
+                      type="password"
+                      className="focus:outline-none focus-visible:ring-transparent w-full h-full py-0 px-2 border-none"
+                      placeholder="Password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem
+                  style={{
+                    background: "#010415",
+                    border: "0.7px rgba(166, 166, 166, 0.24)",
+                    boxShadow:
+                      "0px 3.845px 13.459px 0px rgba(31, 82, 149, 0.16)",
+                    borderRadius: "6px",
+                  }}
+                  className="w-[494px] h-[44px] flex items-center border border-solid rounded-md px-6 py-2"
+                >
+                  <FormLabel className="w-[30px] flex items-center justify-center">
+                    <Image
+                      src="/images/password.png"
+                      alt="user icon"
+                      width={20}
+                      height={20}
+                      className="object-contain"
+                    />
+                  </FormLabel>
+                  <FormControl className="w-full">
+                    <Input
+                      className="focus:outline-none focus-visible:ring-transparent w-full h-full py-0 px-2 border-none"
+                      placeholder="Confirm Password"
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <small className="text-red-600 text-center ">{`${
+              isPasswordThesame ? "" : "Passwords do not match"
+            }`}</small>
+            <Button className="rounded-lg" type="submit">
+              {loading ? (
+                <Spinner className="text-gray-400" size="small" />
+              ) : (
+                "Submit"
+              )}
+            </Button>
+          </form>
+        </Form>
+      </FormLayout>
+    </>
   );
 }

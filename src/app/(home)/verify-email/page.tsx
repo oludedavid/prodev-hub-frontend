@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
@@ -8,7 +9,10 @@ import axios from "axios";
 const VerifyEmailContent = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
+  const [statusState, setStatusState] = useState(false);
   const [status, setStatus] = useState("Verifying...");
+
+  console.log("Token:", token);
 
   useEffect(() => {
     if (token) {
@@ -18,6 +22,7 @@ const VerifyEmailContent = () => {
         )
         .then((response) => {
           setStatus("Email verified successfully! You can now log in.");
+          setStatusState(true);
         })
         .catch((error) => {
           if (
@@ -37,7 +42,12 @@ const VerifyEmailContent = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1>Email Verification</h1>
-      <p>{status}</p>
+      <p>
+        {status} {statusState && <Link href="/login">Login</Link>}{" "}
+        {status === "Email verified successfully! You can now log in." && (
+          <Link href="/login">Login</Link>
+        )}
+      </p>
     </div>
   );
 };
