@@ -16,7 +16,7 @@ const VerifyEmailContent = () => {
     if (token) {
       axios
         .get(
-          `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}/verify-email?token=${token}`
+          `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}/users/verify-email?token=${token}`
         )
         .then((response) => {
           setStatus("Email verified successfully! You can now log in.");
