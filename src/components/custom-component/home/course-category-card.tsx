@@ -1,9 +1,9 @@
 // src/components/custom-component/course-category-card.tsx
 import React from "react";
-import { CourseCategories } from "@/schema/courseCategories";
+import { CourseCategoryType } from "@/types/courseCategory";
 import { Button } from "@/components/ui/button";
 
-const CourseCategoryCard: React.FC<CourseCategories> = ({
+const CourseCategoryCard: React.FC<CourseCategoryType> = ({
   id,
   name,
   numberOfCourses,

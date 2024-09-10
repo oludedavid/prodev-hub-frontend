@@ -11,7 +11,11 @@ import ReviewSection from "@/components/custom-component/home/review-section";
 import CallToAction from "@/components/custom-component/home/call-to-action";
 import { ExpertService } from "@/types/expertService";
 import { Review } from "@/types/review";
-import { courseCategoriesData } from "@/data/courseCategories";
+import { CourseCategoryType } from "@/types/courseCategory";
+import axios from "axios";
+
+const baseUrl = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}`;
+const getAllCourseCategoriesUrl = `${baseUrl}/courses/course-categories`;
 
 const expertServices: ExpertService[] = [
   {
@@ -83,6 +87,21 @@ const reviews: Review[] = [
 ];
 
 export default function Home() {
+  const [courseCategoriesData, setCourseCategoriesData] = React.useState<
+    CourseCategoryType[]
+  >([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(getAllCourseCategoriesUrl);
+        setCourseCategoriesData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <main className="py-16">
       <Hero />

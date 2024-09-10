@@ -5,7 +5,7 @@ const ProfileAvatar = ({
   typeOfEntity,
   imageUrl,
 }: {
-  entityName: string;
+  entityName: string | undefined;
   typeOfEntity: "instructor" | "student" | "expert";
   imageUrl?: string;
 }) => {
@@ -15,7 +15,7 @@ const ProfileAvatar = ({
         <Image
           width={33}
           height={32}
-          src={imageUrl || "/images/card-person2.png"}
+          src={`/${imageUrl}`}
           alt={`${typeOfEntity} Avatar`}
           className="w-[34px] h-[32px] rounded-full"
         />

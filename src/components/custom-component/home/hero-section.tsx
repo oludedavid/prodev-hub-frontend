@@ -1,15 +1,31 @@
+import React from "react";
 import SearchBar from "@/components/custom-component/structure/search-bar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import Image from "next/image";
-import { courseCategoriesData } from "@/data/courseCategories";
+import axios from "axios";
+import { CourseCategoryType } from "@/types/courseCategory";
+
+const baseUrl = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}`;
+const getAllCourseCategoriesUrl = `${baseUrl}/courses/categories`;
 
 const Hero: React.FC = () => {
-  // Extract unique category names
-  const uniqueCategories = Array.from(
-    new Set(courseCategoriesData.map((courses) => courses.name))
-  );
+  const [courseCategoriesData, setCourseCategoriesData] = React.useState<
+    CourseCategoryType[]
+  >([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(getAllCourseCategoriesUrl);
+        setCourseCategoriesData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div
@@ -19,7 +35,7 @@ const Hero: React.FC = () => {
         boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
       }}
     >
-      <SearchBar courseCategories={uniqueCategories} />
+      <SearchBar courseCategories={courseCategoriesData} />
       <div className="w-full max-w-2xl space-y-8 p-6">
         <h1 className="relative text-center tracking-wider font-bold text-2xl lg:text-5xl">
           Empower Your Tech Journey with ProDev Hub

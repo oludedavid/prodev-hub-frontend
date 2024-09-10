@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import CourseCard from "../course/course-card";
-import { CourseProps } from "@/schema/courses";
+import { CourseOfferedType } from "@/types/courseOffered";
 import paginationStyles from "./Pagination.module.css";
 
 type PaginationProps = {
-  paginationData: CourseProps[];
+  paginationData: CourseOfferedType[];
   itemsPerPage: number;
 };
 
@@ -17,7 +17,7 @@ const CoursesListPaginationComponent: React.FC<PaginationProps> = ({
   // for storing the current page number for the pagination component
   const [currentPage, setCurrentPage] = useState<number>(0);
   // the data that will be shown after filtering data for each page.
-  const [filteredData, setFilteredData] = useState<CourseProps[]>([]);
+  const [filteredData, setFilteredData] = useState<CourseOfferedType[]>([]);
   // the maximum number of items to show on a page.
   const n: number = itemsPerPage;
 
@@ -39,11 +39,11 @@ const CoursesListPaginationComponent: React.FC<PaginationProps> = ({
       <div className="w-full grid grid-cols-3 gap-4 place-items-center">
         {filteredData.map((course) => (
           <CourseCard
-            key={course.id}
-            id={course.id}
+            key={course._id}
+            id={course._id}
             name={course.name}
             imageUrl={course.imageUrl}
-            tutorName={course.tutor}
+            tutorName={course.tutorName}
             price={course.price}
           />
         ))}

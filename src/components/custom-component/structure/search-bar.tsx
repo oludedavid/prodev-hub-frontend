@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
+import { CourseCategoryType } from "@/types/courseCategory";
 import { IoMdSearch } from "react-icons/io";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
 import {
   Select,
   SelectContent,
@@ -14,7 +16,7 @@ import {
 } from "@/components/ui/select";
 
 interface SearchBarProps {
-  courseCategories: string[];
+  courseCategories: CourseCategoryType[];
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ courseCategories = [] }) => {
@@ -44,10 +46,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ courseCategories = [] }) => {
             {courseCategories.map((category) => (
               <SelectItem
                 className="cursor-pointer "
-                key={category}
-                value={category}
+                key={category.id}
+                value={category.name}
               >
-                {category}
+                {category.name}
               </SelectItem>
             ))}
           </SelectGroup>

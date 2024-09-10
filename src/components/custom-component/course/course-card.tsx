@@ -27,7 +27,7 @@ const CourseCard = ({
   tutorName,
   price,
 }: {
-  id: number;
+  id: string;
   name: string;
   imageUrl: string;
   tutorName: string;
@@ -46,10 +46,10 @@ const CourseCard = ({
     >
       {/* image */}
       <picture className="w-[274px] h-[173px]">
-        <Image
+        <img
           width={274}
           height={173}
-          src={imageUrl}
+          src={`${imageUrl}`}
           className="w-full h-full rounded-[10px]"
           alt="Course Item Image"
         />
@@ -110,7 +110,7 @@ const CourseCard = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <picture>
-            <Image
+            <img
               width={33}
               height={32}
               src="/images/card-person2.png"

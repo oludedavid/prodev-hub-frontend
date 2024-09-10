@@ -1,10 +1,10 @@
 import CourseCategoryCardList from "./course-category-card-list";
-import { CourseCategories } from "@/schema/courseCategories";
+import { CourseCategoryType } from "@/types/courseCategory";
 import SectionHeader from "./section-header";
 const TopClassCoursesContainer = ({
   courseCategory,
 }: {
-  courseCategory: CourseCategories[];
+  courseCategory: CourseCategoryType[];
 }) => {
   return (
     <div className="w-full flex flex-col justify-center items-center gap-4 p-3">

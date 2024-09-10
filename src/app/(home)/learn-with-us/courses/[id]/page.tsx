@@ -1,8 +1,7 @@
 /* eslint-disable */
 "use client";
 import React from "react";
-import { coursesData } from "@/data/coursesData";
-import { differenceInMonths } from "date-fns";
+import { CourseOfferedType } from "@/types/courseOffered";
 import CallToAction from "@/components/custom-component/callToAction/call-to-action";
 import BackgroundRectPattern from "@/components/custom-component/background/backgroundRect";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,95 +12,50 @@ import Image from "next/image";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import CourseCard from "@/components/custom-component/course/course-card";
+import axios from "axios";
 
-const courseDetailData = coursesData.map((course) => {
-  const {
-    id,
-    name,
-    description,
-    tutor,
-    startDate,
-    endDate,
-    overview,
-    courseLevel,
-    category,
-    numberOfReviews,
-    rating,
-    imageUrl,
-    numberOfLessons,
-    numberOfHours,
-    numberOfStudents,
-    language,
-    price,
-    curriculums,
-  } = course;
-
-  const duration = differenceInMonths(new Date(endDate), new Date(startDate));
-
-  return {
-    id,
-    name,
-    description,
-    tutor,
-    startDate,
-    endDate,
-    duration,
-    category,
-    imageUrl,
-    courseLevel,
-    numberOfReviews,
-    numberOfStudents,
-    overview,
-    rating,
-    numberOfLessons,
-    numberOfHours,
-    language,
-    price,
-    curriculums,
-  };
-});
+const baseUrl = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}`;
+const getAllCoursesOfferedUrl = `${baseUrl}/courses`;
+const getCourseByIdUrl = `${baseUrl}/courses/course-by-id`;
 
 const CourseDetails = ({ params }: { params: { id: string } }) => {
   const [activeTab, setActiveTab] = React.useState("overview");
+  const [courseData, setCourseData] = React.useState<CourseOfferedType>();
+  const [allCourseData, setAllCourseData] =
+    React.useState<CourseOfferedType[]>();
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [courseRes, allCoursesRes] = await Promise.all([
+          axios.get(`${getCourseByIdUrl}/${params.id}`),
+          axios.get(getAllCoursesOfferedUrl),
+        ]);
+
+        setCourseData(courseRes.data);
+        setAllCourseData(allCoursesRes.data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+
+    fetchData();
+  }, [params.id]);
+
   const handleTabChange = (value: string) => {
     setActiveTab(value);
   };
 
-  const filteredCourse = courseDetailData.find(
-    (course) => course.id.toString() === params.id
-  );
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const id = params.id;
+  console.log(params.id);
 
-  if (!filteredCourse) {
-    return <div>Course not found</div>;
-  }
-
-  const {
-    name,
-    tutor,
-    startDate,
-    duration,
-    imageUrl,
-    numberOfReviews,
-    overview,
-    courseLevel,
-    numberOfStudents,
-    rating,
-    numberOfLessons,
-    category,
-    language,
-    price,
-    curriculums,
-  } = filteredCourse;
+  console.log("courseData", courseData);
+  console.log("allCourseData", allCourseData);
 
   return (
     <div className="sm:px-2 lg:px-[150px] md:px-[150px]">
       <BackgroundRectPattern>
         <h1 className="text-[40px] w-full flex items-center justify-center font-bold">
-          {name}
+          {courseData?.name || "Course Name"}
         </h1>
       </BackgroundRectPattern>
       <div className="w-full flex items-start justify-center gap-9 py-20">
@@ -121,8 +75,8 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
               className="w-full flex flex-col items-center justify-center "
             >
               <picture className="w-full p-3">
-                <Image
-                  src={imageUrl}
+                <img
+                  src={`/images/courseDetailImage.png`}
                   alt="course image"
                   width={500}
                   height={300}
@@ -131,27 +85,27 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
               </picture>
               <div className="w-full flex items-center pl-2 py-3 justify-start">
                 <h2 className="w-[532px] h-[35px] text-[18px] flex items-center justify-start font-bold text-[#FFF]">
-                  {name}
+                  {courseData?.name}
                 </h2>
               </div>
             </div>
           </div>
           <div className="w-[530PX] h-[50px] flex items-center justify-between">
             <ProfileAvatar
-              entityName={tutor}
+              entityName={courseData?.tutorName}
               typeOfEntity="instructor"
-              imageUrl={imageUrl}
+              imageUrl={`${courseData?.imageUrl}` || ""}
             />
             <div className="flex flex-col gap-1">
               <h5 className="text-[#E3E3E3] text-[14px]">Starting Date:</h5>
               <p className="w-[153px] h-[24px] text-[#E3E3E3] text-[12px] ">
-                {startDate}
+                {"2023-01-01"}
               </p>
             </div>
             <div className="flex flex-col gap-1">
               <h5 className="text-[#E3E3E3] text-[14px]">Review</h5>
               <div className="flex items-center gap-1">
-                <Rating rating={rating} />
+                <Rating rating={5} />
               </div>
             </div>
           </div>
@@ -264,29 +218,23 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
             </TabsList>
             <TabsContent className="py-4 px-3 h-[330px]" value="overview">
               <div>
-                <p className="text-[14px] text-[#E3E3E3]">{overview}</p>
+                <p className="text-[14px] text-[#E3E3E3]">
+                  {courseData?.description}
+                </p>
                 <p className="py-4 px-1">What you will learn:</p>
-                <ul className="list-disc py-1 px-3 text-[14px] text-[#E3E3E3] ">
-                  {curriculums.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
+                Available soon
               </div>
             </TabsContent>
             <TabsContent className=" h-[330px] pl-8 pt-4" value="curriculum">
-              <ul className="list-disc flex flex-col gap-5 ">
-                {curriculums.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+              <h1>Available soon</h1>
             </TabsContent>
             <TabsContent
               className="h-[330px] py-3 px-3 flex flex-col gap-3"
               value="instructor"
             >
-              <p>{tutor}</p>
+              <p>{courseData?.tutorName}</p>
               <p>
-                <strong>Language:</strong> {language}
+                <strong>Language:</strong> {"English"}
               </p>
             </TabsContent>
             {/* <TabsContent className="" value="review">
@@ -309,7 +257,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
           className="w-[390px] flex flex-col border-1 border-solid items-center  justify-center"
         >
           <picture className="w-full">
-            <Image
+            <img
               src={"/images/courseDetailImage.png"}
               alt="Course Image"
               width={300}
@@ -320,7 +268,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
           <div className="w-full flex flex-col items-center justify-center">
             <div className=" w-full flex flex-col items-center ">
               <div className="w-3/4 flex justify-start pr-2 py-2">
-                <p className=" text-[#FFF] text-[30px] font-semibold">{`$${price}.00`}</p>
+                <p className=" text-[#FFF] text-[30px] font-semibold">{`$${courseData?.price}.00`}</p>
               </div>
               <Button
                 style={{
@@ -383,7 +331,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
                   <h5 className="text-[#FFF] flex items-center justify-center gap-1 text-[14px] font-semibold capitalize ">
                     Course Level:
                     <span className="text-[#E3E3E3] w-[67px] h-[18px] capitalize">
-                      {courseLevel}
+                      {"Beginner"}
                     </span>
                   </h5>
                 </div>
@@ -416,7 +364,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
                   <h5 className="text-[#FFF] flex items-center justify-center gap-1 text-[14px] font-semibold capitalize ">
                     Lessons:
                     <span className="text-[#E3E3E3] w-[67px] h-[18px] capitalize">
-                      {numberOfLessons}
+                      {"20"}
                     </span>
                   </h5>
                 </div>
@@ -448,7 +396,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
                   <h5 className=" flex items-center justify-center gap-1 text-[#FFF] text-[14px] font-semibold capitalize ">
                     Duration:
                     <span className="text-[#E3E3E3] w-[160px] h-[18px] capitalize">
-                      {duration} Months Approx
+                      {courseData?.duration} Months Approx
                     </span>
                   </h5>
                 </div>
@@ -501,7 +449,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
                   <h5 className="flex items-center justify-center gap-1 text-[#FFF] text-[14px] font-semibold capitalize ">
                     Enrolled:
                     <span className="text-[#E3E3E3] w-[67px] h-[18px] capitalize">
-                      {numberOfStudents}
+                      {courseData?.numberOfEnrolledStudents}
                     </span>
                   </h5>
                 </div>
@@ -529,7 +477,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
                   <h5 className="flex items-center justify-center gap-1 text-[#FFF] text-[14px] font-semibold capitalize ">
                     Language:
                     <span className="text-[#E3E3E3] w-[67px] h-[18px] capitalize">
-                      {language}
+                      {"English"}
                     </span>
                   </h5>
                 </div>
@@ -598,23 +546,25 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
               </defs>
             </svg>
           </h1>
-          <div className="">
-            {coursesData
-              .filter(
-                (course) =>
-                  course.id.toString() !== params.id &&
-                  course.category === category
-              )
-              .map((course) => (
-                <CourseCard
-                  id={course.id}
-                  imageUrl={course.imageUrl}
-                  tutorName={course.tutor}
-                  name={course.name}
-                  price={course.price}
-                  key={course.id}
-                />
-              ))}
+          <div className="flex flex-col gap-4 lg:flex-row md:flex-row">
+            {allCourseData &&
+              allCourseData
+                .filter(
+                  (course) =>
+                    course._id.toString() !== params.id &&
+                    course.category === courseData?.category
+                )
+                .slice(0, 5) // Show only the first 5 related courses
+                .map((course) => (
+                  <CourseCard
+                    id={course._id}
+                    imageUrl={course.imageUrl}
+                    tutorName={course.tutorName}
+                    name={course.name}
+                    price={course.price}
+                    key={course._id}
+                  />
+                ))}
           </div>
         </div>
       </div>
