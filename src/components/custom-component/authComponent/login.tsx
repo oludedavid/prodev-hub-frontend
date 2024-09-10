@@ -80,8 +80,7 @@ export default function LoginForm() {
         setError(true);
         toast({
           title: "Error",
-          description:
-            error.response?.statusText || `Login failed. Please try again.`,
+          description: `Login failed. Please try again. ${error.response?.statusText} ${error.response?.message}`,
           variant: "destructive",
         });
         setLoading(false);

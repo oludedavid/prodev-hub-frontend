@@ -38,7 +38,7 @@ const VerifyEmailContent = () => {
   }, [token]);
 
   return (
-    <div className="flex flex-row items-start justify-center min-h-screen w-screen py-16">
+    <div className="flex flex-col items-start justify-center min-h-screen w-screen py-16">
       <h1>Welcome to Proddev Hub Nexus! 🎉😊🎊</h1>
       <p>
         {statusState && (

@@ -5,19 +5,19 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 
 const cookies = new Cookies();
-const baseUrl = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}/users/logout`;
+const logoutAllUrl = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}/users/logoutAll`;
 
-const LogoutButton = () => {
+const LogoutAllButton = () => {
   const router = useRouter();
 
-  const logout = async () => {
+  const logoutAll = async () => {
     try {
       // Get the token from cookies
       const token = cookies.get("TOKEN");
 
-      // Send logout request to the backend
+      // Send logoutAll request to the backend
       await axios.post(
-        baseUrl,
+        logoutAllUrl,
         {},
         {
           headers: {
@@ -44,12 +44,12 @@ const LogoutButton = () => {
 
   return (
     <button
-      onClick={logout}
+      onClick={logoutAll}
       className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
     >
-      Logout
+      Logout from All Devices
     </button>
   );
 };
 
-export default LogoutButton;
+export default LogoutAllButton;

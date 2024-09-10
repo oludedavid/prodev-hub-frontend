@@ -13,12 +13,12 @@ const withRole = <P extends object>(
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
-      setIsClient(true); // Ensure this runs on the client side
+      setIsClient(true);
     }, []);
 
     useEffect(() => {
       if (isClient) {
-        const cookies = new Cookies(); // Initialize cookies inside useEffect
+        const cookies = new Cookies();
         const token = cookies.get("TOKEN");
         const user = cookies.get("USER");
         const userRole = user?.role;
@@ -35,11 +35,11 @@ const withRole = <P extends object>(
 
         setIsAuthorized(true);
       }
-    }, [router, isClient]); // No need for 'cookies' in the dependency array
+    }, [router, isClient]);
 
     if (!isAuthorized) return <div>Loading...</div>;
 
-    return isClient ? <WrappedComponent {...props} /> : null; // Render after client check
+    return isClient ? <WrappedComponent {...props} /> : null;
   };
 
   HOC.displayName = `withRole(${
