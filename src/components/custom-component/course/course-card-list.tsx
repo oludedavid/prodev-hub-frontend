@@ -1,6 +1,5 @@
 import React from "react";
 import CourseCard from "./course-card";
-import { CourseProps } from "@/schema/courses";
 
 /**
  * Props for the CourseCardList component.
@@ -14,6 +13,14 @@ import { CourseProps } from "@/schema/courses";
  * @param {CourseCardListProps} props - The props for the component.
  * @returns {JSX.Element} The rendered CourseCardList component.
  */
+type CourseProps = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  tutor: string;
+  price: number;
+};
+
 const CourseCardList: React.FC<{ courses: CourseProps[] }> = ({ courses }) => {
   return (
     <div className="flex flex-wrap gap-6 justify-center">
