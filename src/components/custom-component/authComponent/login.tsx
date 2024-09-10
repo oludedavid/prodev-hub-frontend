@@ -42,7 +42,7 @@ const loginFormSchema = z.object({
 
 export default function LoginForm() {
   const router = useRouter();
-  const baseURL = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_API_URL}/login`;
+  const baseURL = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}/users/login`;
   const cookie = new Cookies();
 
   const [showPassword, setShowPassword] = React.useState(false);

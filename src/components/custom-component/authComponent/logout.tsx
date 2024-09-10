@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 
 const cookies = new Cookies();
-
+const baseUrl = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}/users/logout`;
 const LogoutButton = () => {
   const router = useRouter();
 

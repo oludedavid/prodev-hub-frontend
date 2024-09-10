@@ -12,13 +12,11 @@ const VerifyEmailContent = () => {
   const [statusState, setStatusState] = useState(false);
   const [status, setStatus] = useState("Verifying...");
 
-  console.log("Token:", token);
-
   useEffect(() => {
     if (token) {
       axios
         .get(
-          `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_API_URL}/verify-email?token=${token}`
+          `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}/verify-email?token=${token}`
         )
         .then((response) => {
           setStatus("Email verified successfully! You can now log in.");
@@ -40,7 +38,7 @@ const VerifyEmailContent = () => {
   }, [token]);
 
   return (
-    <div className="flex flex-row items-start justify-center min-h-screen w-screen py-2">
+    <div className="flex flex-row items-start justify-center min-h-screen w-screen py-16">
       <h1>Welcome to Proddev Hub Nexus! 🎉😊🎊</h1>
       <p>
         {statusState && (

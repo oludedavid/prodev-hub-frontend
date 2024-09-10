@@ -56,7 +56,9 @@ const registerFormSchema = z.object({
       message: "Password must be at least 8 characters.",
     })
     .toLowerCase(),
-  role: z.enum(["student", "tutor"]).default("student"),
+  badge: z
+    .enum(["potential_student", "student", "tutor", "admin"])
+    .default("potential_student"),
 });
 
 export default function RegistrationForm() {
@@ -66,7 +68,7 @@ export default function RegistrationForm() {
   const [loading, setLoading] = React.useState(false);
   const { toast } = useToast();
   const router = useRouter();
-  const baseURL = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_API_URL}/register`;
+  const baseURL = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}/users/signup`;
 
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
@@ -79,7 +81,7 @@ export default function RegistrationForm() {
   });
   const { reset } = form;
   function onSubmit(values: z.infer<typeof registerFormSchema>) {
-    const { fullName, email, password, confirmPassword, role } = values;
+    const { fullName, email, password, confirmPassword, badge } = values;
 
     setLoading(true);
 
@@ -90,7 +92,7 @@ export default function RegistrationForm() {
     }
 
     axios
-      .post(baseURL, { fullName, email, password, role })
+      .post(baseURL, { fullName, email, password, badge })
       .then((response) => {
         console.log("Response status:", response.status, response.statusText);
         setLoading(false);
