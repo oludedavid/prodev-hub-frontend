@@ -1,14 +1,14 @@
-type BasketCourseType = {
+export type CartCourseType = {
   courseOfferedId: string;
   name: string;
   quantity: number;
   price: number;
 };
 
-export type BasketType = {
+export type CartTypeWithOperations = {
   id: string;
   owner: string;
-  courses: BasketCourseType[];
+  courses: CartCourseType[];
   operations: {
     add: (id: string) => void;
     remove: (id: string) => void;
@@ -16,4 +16,10 @@ export type BasketType = {
     totalNumberOfItems: () => number;
     totalPrice: () => number;
   };
+};
+export type CartType = {
+  id: string;
+  owner: string;
+  courses: CartCourseType[];
+  bill: number;
 };

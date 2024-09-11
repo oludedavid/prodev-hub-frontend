@@ -102,6 +102,7 @@ export default function RegistrationForm() {
           variant: "default",
         });
         setRegister(true);
+        router.push("/login");
         reset();
       })
       .catch((error) => {

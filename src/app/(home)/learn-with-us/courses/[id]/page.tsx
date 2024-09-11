@@ -10,22 +10,37 @@ import Rating from "@/components/custom-component/ratings/rating";
 import { IoMdStar } from "react-icons/io";
 import Image from "next/image";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { CartType } from "@/types/basket";
 import { Button } from "@/components/ui/button";
+import Cookies from "universal-cookie";
 import CourseCard from "@/components/custom-component/course/course-card";
 import axios from "axios";
-
 const baseUrl = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}`;
 const getAllCoursesOfferedUrl = `${baseUrl}/courses`;
 const getCourseByIdUrl = `${baseUrl}/courses/course-by-id`;
-
+const getBasketUrl = `${baseUrl}/cart`;
+const cookies = new Cookies();
+const loggedUser = cookies.get("USER");
+type CartPayloadType = {
+  courseOfferedId: string;
+  quantity: 1;
+};
 const CourseDetails = ({ params }: { params: { id: string } }) => {
+  const [cart, setCart] = React.useState<CartType>();
   const [activeTab, setActiveTab] = React.useState("overview");
   const [courseData, setCourseData] = React.useState<CourseOfferedType>();
   const [allCourseData, setAllCourseData] =
     React.useState<CourseOfferedType[]>();
-
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(true);
+  const cartPayload: CartPayloadType = {
+    courseOfferedId: params.id,
+    quantity: 1,
+  };
   React.useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+
       try {
         const [courseRes, allCoursesRes] = await Promise.all([
           axios.get(`${getCourseByIdUrl}/${params.id}`),
@@ -37,19 +52,46 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
       } catch (error) {
         console.error("Error fetching data", error);
       }
+      setLoading(false);
     };
 
     fetchData();
   }, [params.id]);
+  //on click of the book now button, check if the user is logged in or not
+  //if the user is logged in, then add the course to the cart
+  //if the user is not logged in, then redirect to login page
 
+  const addToCart = async () => {
+    try {
+      if (!loggedUser) {
+        router.push("/login");
+        return;
+      }
+
+      const token = cookies.get("TOKEN");
+      const response = await axios.post(getBasketUrl, cartPayload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setCart(response.data);
+      router.push("/cart");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
+  };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   const handleTabChange = (value: string) => {
     setActiveTab(value);
   };
 
-  console.log(params.id);
-
   console.log("courseData", courseData);
   console.log("allCourseData", allCourseData);
+  console.log("cart", cart);
 
   return (
     <div className="sm:px-2 lg:px-[150px] md:px-[150px]">
@@ -271,6 +313,9 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
                 <p className=" text-[#FFF] text-[30px] font-semibold">{`$${courseData?.price}.00`}</p>
               </div>
               <Button
+                onClick={() => {
+                  addToCart();
+                }}
                 style={{
                   background:
                     "linear-gradient(90deg, #465BB8 0.26%, #663FD6 99.71%)",
@@ -554,7 +599,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
                     course._id.toString() !== params.id &&
                     course.category === courseData?.category
                 )
-                .slice(0, 5) // Show only the first 5 related courses
+                .slice(0, 5)
                 .map((course) => (
                   <CourseCard
                     id={course._id}

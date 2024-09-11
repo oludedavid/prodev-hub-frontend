@@ -33,6 +33,7 @@ const CourseCard = ({
   tutorName: string;
   price: number;
 }) => {
+  const instructorAvatarUrl = "/images/card-person2.png";
   return (
     <div
       style={{
@@ -49,7 +50,7 @@ const CourseCard = ({
         <img
           width={274}
           height={173}
-          src={`${imageUrl}`}
+          src={`${imageUrl || "/images/courseDetailImage.png"}`}
           className="w-full h-full rounded-[10px]"
           alt="Course Item Image"
         />
@@ -113,7 +114,7 @@ const CourseCard = ({
             <img
               width={33}
               height={32}
-              src="/images/card-person2.png"
+              src={`/${instructorAvatarUrl || "/images/card-person2.png"}`}
               alt="Instructor Avatar"
               className="w-[34px] h-[32px] rounded-full"
             />
