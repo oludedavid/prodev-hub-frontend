@@ -52,23 +52,28 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
       } catch (error) {
         console.error("Error fetching data", error);
       }
+
       setLoading(false);
     };
 
     fetchData();
   }, [params.id]);
-  //on click of the book now button, check if the user is logged in or not
-  //if the user is logged in, then add the course to the cart
-  //if the user is not logged in, then redirect to login page
 
   const addToCart = async () => {
     try {
       if (!loggedUser) {
+        // Store the intended redirect path (cart) in localStorage before routing to login
+        localStorage.setItem("redirectAfterLogin", "/cart");
         router.push("/login");
         return;
       }
 
       const token = cookies.get("TOKEN");
+      const cartPayload = {
+        courseOfferedId: params.id,
+        quantity: 1,
+      };
+
       const response = await axios.post(getBasketUrl, cartPayload, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -82,9 +87,19 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
     }
   };
 
+  React.useEffect(() => {
+    // After login, check if there's a stored redirect path
+    const redirectAfterLogin = localStorage.getItem("redirectAfterLogin");
+    if (redirectAfterLogin) {
+      router.push(redirectAfterLogin);
+      localStorage.removeItem("redirectAfterLogin");
+    }
+  }, []);
+
   if (loading) {
     return <p>Loading...</p>;
   }
+
   const handleTabChange = (value: string) => {
     setActiveTab(value);
   };
