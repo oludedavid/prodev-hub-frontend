@@ -5,12 +5,11 @@ import { CourseOfferedType } from "@/types/courseOffered";
 import Cookies from "universal-cookie";
 import axios from "axios";
 
-export default function Basket({
-  basket,
-  courseOffered,
-}: {
-  basket: CartType;
-  courseOffered: CourseOfferedType[];
+export default function Basket({}: // basket,
+// courseOffered,
+{
+  // basket: CartType;
+  // courseOffered: CourseOfferedType[];
 }) {
   const cookie = new Cookies();
   const loggedUser = cookie.get("USER");
@@ -39,6 +38,7 @@ export default function Basket({
   return (
     <div>
       <h1>Your Basket</h1>
+      <h1>Welcome {loggedUser}</h1>
       {cart ? (
         <div>
           {/* Display cart details */}
