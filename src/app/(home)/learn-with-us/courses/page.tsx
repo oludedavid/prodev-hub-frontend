@@ -40,8 +40,6 @@ export default function LearnWithUsPage() {
 
     fetchData();
   }, []);
-  console.log(coursesOfferedData);
-  console.log(courseCategoriesData);
 
   if (error) {
     return (

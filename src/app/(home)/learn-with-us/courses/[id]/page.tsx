@@ -63,7 +63,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
     try {
       if (!loggedUser) {
         // Store the intended redirect path (cart) in localStorage before routing to login
-        localStorage.setItem("redirectAfterLogin", "/cart");
+        localStorage.setItem("redirectAfterLogin", "/basket");
         router.push("/login");
         return;
       }
@@ -103,10 +103,6 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
   const handleTabChange = (value: string) => {
     setActiveTab(value);
   };
-
-  console.log("courseData", courseData);
-  console.log("allCourseData", allCourseData);
-  console.log("cart", cart);
 
   return (
     <div className="sm:px-2 lg:px-[150px] md:px-[150px]">

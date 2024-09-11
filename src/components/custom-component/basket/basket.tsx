@@ -27,10 +27,9 @@ export default function Basket({}: // basket,
         })
         .then((res) => {
           setCart(res.data);
-          console.log(res.data);
         })
         .catch((error) => {
-          console.log("Error fetching cart data:", error);
+          console.error("Error fetching cart data:", error);
         });
     }
   }, [loggedUser, token]);
