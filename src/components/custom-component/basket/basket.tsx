@@ -20,7 +20,7 @@ export default function Basket({}: // basket,
   useEffect(() => {
     if (loggedUser && token) {
       axios
-        .get(`${baseUrl}/cart`, {
+        .get(`${baseUrl}/basket`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -17,7 +17,7 @@ export default function BasketPage() {
 
   return (
     <div>
-      <Basket></Basket>
+      <Basket />
     </div>
   );
 }
