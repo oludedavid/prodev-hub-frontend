@@ -81,7 +81,7 @@ const CourseDetails = ({ params }: { params: { id: string } }) => {
       });
 
       setCart(response.data);
-      router.push("/cart");
+      router.push("/basket");
     } catch (error) {
       console.error("Error adding to cart:", error);
     }

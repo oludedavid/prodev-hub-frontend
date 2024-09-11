@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { CartType } from "@/types/basket";
 import { CourseOfferedType } from "@/types/courseOffered";
