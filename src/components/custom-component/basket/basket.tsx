@@ -4,6 +4,8 @@ import { CartType } from "@/types/basket";
 import { CourseOfferedType } from "@/types/courseOffered";
 import Cookies from "universal-cookie";
 import axios from "axios";
+import { baseUrl } from "@/lib/utils";
+import useCart from "@/hooks/use-cart-store";
 
 export default function Basket({}: // basket,
 // courseOffered,
@@ -14,8 +16,8 @@ export default function Basket({}: // basket,
   const cookie = new Cookies();
   const loggedUser = cookie.get("USER");
   const token = cookie.get("TOKEN");
-  const baseUrl = `${process.env.NEXT_PUBLIC_PRODEV_HUB_BACKEND_ROOT_URL}`;
-  const [cart, setCart] = useState<CartType | null>(null);
+  // const [cart, setCart] = useState<CartType | null>(null);
+  const { courses, removeCourse } = useCart();
 
   useEffect(() => {
     if (loggedUser && token) {
@@ -26,7 +28,7 @@ export default function Basket({}: // basket,
           },
         })
         .then((res) => {
-          setCart(res.data);
+          // setCart(res.data);
         })
         .catch((error) => {
           console.error("Error fetching cart data:", error);
@@ -38,21 +40,19 @@ export default function Basket({}: // basket,
     <div>
       <h1>Your Basket</h1>
       <h1>Welcome {loggedUser}</h1>
-      {cart ? (
-        <div>
-          {/* Display cart details */}
-          {cart.courses.map((course) => (
-            <div key={course.courseOfferedId}>
-              <p>{course.name}</p>
-              <p>
-                {course.quantity} x ${course.price}
-              </p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>Your basket is empty or loading...</p>
-      )}
+      <div>
+        {/* Display cart details */}
+        {courses.map((course) => (
+          <div
+            className="bg-red-400 my-20 cursor-pointer"
+            onClick={() => removeCourse(course._id)}
+            key={course._id}
+          >
+            <p>{course.name}</p>
+            <p>$20</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

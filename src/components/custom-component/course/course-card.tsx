@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import useCart from "@/hooks/use-cart-store";
+import { CourseOfferedType } from "@/types/courseOffered";
 
 /**
  * Props for the CourseCard component.
@@ -20,20 +22,8 @@ import Link from "next/link";
  * @returns {JSX.Element} The rendered CourseCard component.
  */
 
-const CourseCard = ({
-  id,
-  name,
-  imageUrl,
-  tutorName,
-  price,
-}: {
-  id: string;
-  name: string;
-  imageUrl: string;
-  tutorName: string;
-  price: number;
-}) => {
-  const instructorAvatarUrl = "/images/card-person2.png";
+const CourseCard = ({ course }: { course: CourseOfferedType }) => {
+  const { addCourse } = useCart();
   return (
     <div
       style={{
@@ -43,14 +33,14 @@ const CourseCard = ({
         border: "0.7px solid rgba(255, 255, 255, 0.39)",
         backdropFilter: "blur(1.6px)",
       }}
-      className="relative w-[301px] h-full flex flex-col gap-3 py-4 px-3"
+      className="relative group w-[301px] h-full flex flex-col gap-3 py-4 px-3"
     >
       {/* image */}
       <picture className="w-[274px] h-[173px]">
         <img
           width={274}
           height={173}
-          src={`${imageUrl || "/images/courseDetailImage.png"}`}
+          src={`${course.imageUrl || "/images/courseDetailImage.png"}`}
           className="w-full h-full rounded-[10px]"
           alt="Course Item Image"
         />
@@ -104,9 +94,9 @@ const CourseCard = ({
         </small>
       </div>
       {/* title */}
-      <h6 className="text-[16px] w-full py-2 font-semibold leading-[21px]">
-        {name}
-      </h6>
+      <Link href={`/learn-with-us/courses/${course._id}`} className="text-[16px] w-full py-2 font-semibold leading-[21px]">
+        {course.name}
+      </Link>
       {/* Instructor name */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -114,7 +104,7 @@ const CourseCard = ({
             <img
               width={33}
               height={32}
-              src={`/${instructorAvatarUrl || "/images/card-person2.png"}`}
+              src={"/images/card-person2.png"}
               alt="Instructor Avatar"
               className="w-[34px] h-[32px] rounded-full"
             />
@@ -129,12 +119,12 @@ const CourseCard = ({
               }}
               className="text-[12px] font-medium leading-[19px] "
             >
-              {tutorName}
+              {course.tutorName}
             </h6>
           </div>
         </div>
         {/* price */}
-        <p>$ {price}</p>
+        <p>$ {course.price}</p>
       </div>
 
       {/* separator */}
@@ -142,16 +132,18 @@ const CourseCard = ({
         <Separator orientation="horizontal" className="" />
       </div>
       {/* button */}
-      <div className="flex items-center justify-center w-[274px]">
-        <Link
-          href={`/learn-with-us/courses/${id}`}
+      <div
+        onClick={() => addCourse(course)}
+        className="opacity-0 group-hover:opacity-100 items-center justify-center w-[274px]"
+      >
+        <p
           style={{
             background: "linear-gradient(90deg, #465BB8 0.26%, #663FD6 99.71%)",
           }}
-          className="w-[219px] h-[34px] flex items-center justify-center rounded-[28px] text-[#FFFFFF] font-medium text-[12px] mt-3"
+          className="w-[219px] cursor-pointer h-[34px] flex items-center justify-center rounded-[28px] text-[#FFFFFF] font-medium text-[12px] mt-3"
         >
-          Read More
-        </Link>
+          Add to Cart
+        </p>
       </div>
     </div>
   );

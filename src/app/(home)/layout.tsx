@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import CustomLayout from "@/components/custom-component/layouts/custom-layout";
 import Cookies from "universal-cookie";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,6 +48,7 @@ export default function RootLayout({
             )}
           </div>
           {children}
+          <Toaster />
         </CustomLayout>
       </body>
     </html>

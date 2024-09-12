@@ -12,12 +12,13 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
+import { Menu, ShoppingCart } from "lucide-react";
 import { NavigationMenuItem } from "@/components/ui/navigation-menu";
 import LogoutButton from "../authComponent/logout";
+import useCart from "@/hooks/use-cart-store";
 
 type Route = {
   label: string;
@@ -25,112 +26,16 @@ type Route = {
   active: boolean;
 };
 
-// const DesktopNavigationMenu = ({
-//   loggedUser,
-//   isCurrentPathName,
-// }: {
-//   loggedUser: LoggedUserProps;
-//   isCurrentPathName: (path: string) => boolean;
-// }) => {
-//   return (
-//     <div>
-//       <div className="flex flex-row md:justify-around lg:justify-around sm:justify-center items-center w-full h-full">
-//         <Logo className="text-[25px] font-extrabold" />
-//         <NavigationMenu
-//           loggedUser={loggedUser}
-//           isCurrentPathName={isCurrentPathName}
-//           className={"flex flex-row items-center justify-center px-2 gap-10 "}
-//         />
-//       </div>
-//       {loggedUser && (
-//         <p className="text-white text-[14px] text-center font-bold ml-20 py-2">{`Welcome back, ${loggedUser.fullName}!`}</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// const TabletNavigationMenu = ({
-//   loggedUser,
-//   isCurrentPathName,
-// }: {
-//   loggedUser: LoggedUserProps;
-//   isCurrentPathName: (path: string) => boolean;
-// }) => {
-//   return (
-//     <div className="w-full h-full  flex flex-row justify-between items-center px-2">
-//       <Logo className="text-[25px] font-medium " />
-//       <Sheet>
-//         <SheetContent className="bg-[#010415] border-none shadow-md">
-//           <SheetHeader>
-//             <SheetTitle>
-//               <div className="w-full flex flex-row items-center justify-between py-8">
-//                 <Logo className="" />
-//                 <Switch className="" id="mode-switcher" />
-//               </div>
-//             </SheetTitle>
-//           </SheetHeader>
-
-//           <NavigationMenu
-//             loggedUser={loggedUser}
-//             isCurrentPathName={isCurrentPathName}
-//             className="flex flex-col justify-center items-center gap-12 py-8"
-//           />
-//         </SheetContent>
-//         <SheetTrigger asChild>
-//           <Button className="bg-transparent">
-//             <FaBars className="" />
-//           </Button>
-//         </SheetTrigger>
-//       </Sheet>
-//     </div>
-//   );
-// };
-
-// const MobileNavigationMenu = ({
-//   loggedUser,
-//   isCurrentPathName,
-// }: {
-//   loggedUser: LoggedUserProps;
-//   isCurrentPathName: (path: string) => boolean;
-// }) => {
-//   return (
-//     <div className="w-screen justify-between  flex flex-row px-2">
-//       <Logo className="text-[20px] font-medium" />
-//       <Sheet>
-//         <SheetContent className="bg-[#010415] border-none shadow-md">
-//           <SheetHeader>
-//             <SheetTitle>
-//               <div className="w-full flex flex-row items-center justify-between py-8">
-//                 <Logo className="" />
-//                 <Switch className="" id="mode-switcher" />
-//               </div>
-//             </SheetTitle>
-//           </SheetHeader>
-
-//           <NavigationMenu
-//             loggedUser={loggedUser}
-//             isCurrentPathName={isCurrentPathName}
-//             className="flex flex-col justify-center items-center gap-12 py-8"
-//           />
-//         </SheetContent>
-//         <SheetTrigger asChild>
-//           <Button className="bg-transparent">
-//             <FaBars className="" />
-//           </Button>
-//         </SheetTrigger>
-//       </Sheet>
-//     </div>
-//   );
-// };
-
 const NavigationBar = ({
   loggedUser,
-  isCurrentPathName,
 }: {
   loggedUser: LoggedUserProps;
   isCurrentPathName: (path: string) => boolean;
 }) => {
+
+  const {courses} = useCart();
   const pathName = usePathname();
+  const router = useRouter();
 
   const ROUTES = [
     {
@@ -166,7 +71,7 @@ const NavigationBar = ({
           <Logo className="text-base md:text-lg font-extrabold" />
         </Link>
 
-        {/* mobile navigation */}
+        {/* desktop navigation */}
         <div className="hidden lg:flex items-center gap-14">
           <ul className="space-x-8">
             {ROUTES.map((route: Route, index: number) => (
@@ -220,7 +125,18 @@ const NavigationBar = ({
               </div>
             </>
           ) : (
-            <div className="flex flex-col space-y-4">
+            <div className="flex items-center space-x-4">
+              {/* add shopping cart */}
+              <Button
+        onClick={() => router.push("/basket")}
+        className="flex items-center hover:bg-red-400 rounded-full bg-black px-4 py-2"
+      >
+        <ShoppingCart size={20} color="white" />
+        <span className="ml-2 text-sm font-medium text-white">
+          {courses.length}
+        </span>
+      </Button>
+              {/* <ShoppingCart  onClick={()=> router.push("/basket")} /> */}
               <Link href="/login">
                 <Button className="px-6" variant="login">
                   Login

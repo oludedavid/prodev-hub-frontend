@@ -40,11 +40,12 @@ const CoursesListPaginationComponent: React.FC<PaginationProps> = ({
         {filteredData.map((course) => (
           <CourseCard
             key={course._id}
-            id={course._id}
-            name={course.name}
-            imageUrl={course.imageUrl}
-            tutorName={course.tutorName}
-            price={course.price}
+            course={course}
+            // id={course._id}
+            // name={course.name}
+            // imageUrl={course.imageUrl}
+            // tutorName={course.tutorName}
+            // price={course.price}
           />
         ))}
       </div>
